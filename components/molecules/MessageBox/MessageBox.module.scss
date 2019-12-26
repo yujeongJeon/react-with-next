@@ -1,0 +1,56 @@
+$Phone : "Only screen and (max-width : 768px) " ;
+$Desktop : "screen and (min-width : 769px)";
+
+.box-wrapper {
+    background-color: #fff;
+    color: #2f353a;
+    border-radius: .25rem;
+    box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.05);
+    padding: 6px 9px 8px 9px;
+    white-space: pre-wrap;
+    position: relative;
+
+    @media #{$Phone} {
+        font-size: .75rem;
+        max-width: 65%;
+        min-width: 20%;
+    }
+    
+    @media #{$Desktop} {
+        font-size: 1rem;
+        max-width: 35%;
+        min-width: 10%;
+    }
+
+    .contents {
+        padding-bottom: 20px;
+    }
+
+    .btns {
+        padding-bottom: 20px;
+    }
+
+    .date-time {
+        color: #73818f;
+        text-align: right;
+        position: absolute;
+        bottom: 8px;
+        right: 9px;
+
+        @media #{$Phone} {
+            font-size: .5rem;
+        }
+        
+        @media #{$Desktop} {
+            font-size: .75rem;
+        }
+    }
+
+    .image {
+        width: 100%;
+
+        &:hover, :active {
+            cursor: pointer;
+        }
+    }
+}

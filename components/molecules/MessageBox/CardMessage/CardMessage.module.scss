@@ -1,0 +1,19 @@
+$Phone : "Only screen and (max-width : 768px) " ;
+$Desktop : "screen and (min-width : 769px)";
+
+.card {
+    .title {
+        padding-bottom: 8px;
+        @media #{$Phone} {
+            font-size: 1rem;
+        }
+        
+        @media #{$Desktop} {
+            font-size: 1.25rem;
+        }
+    }
+
+    .text {
+        padding: 0;
+    }
+}
