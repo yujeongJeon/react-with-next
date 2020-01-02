@@ -23,6 +23,7 @@ const Common = (function (){
             if (typeof coll === "string") return coll.length > 0 ? true : false;
             return false;
         },
+        isNull: coll => coll === null,
         isEmpty: coll => {
             if (coll === undefined) return true;
             if (coll instanceof Array) return coll.length == 0 ? true : false;

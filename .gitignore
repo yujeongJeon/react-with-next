@@ -2,6 +2,7 @@
 ./node_modules
 *.log
 node_modules/
+config/env/*
 .next
 public/images
 npm-debug.log

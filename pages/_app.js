@@ -1,5 +1,6 @@
 import '../utils/functional';
 import '../styles/common.scss';
+import MessageProvider from '../components/providers/MessageProvider';
 
 import React from 'react';
 import App from 'next/app';
@@ -20,9 +21,9 @@ export default class Root extends App {
 		const { Component, pageProps } = this.props
 
 		return (
-			<>
+			<MessageProvider>
                 <Component {...pageProps} />
-			</>
+			</MessageProvider>
 		)
 	}
 }

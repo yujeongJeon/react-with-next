@@ -1,88 +1,36 @@
 import styles from './ChattingLayout.module.scss';
 
 import classNames from 'classnames/bind';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from 'react';
 
 import { ChattingHeader, MessageList } from '../../organisms';
 import { MessageInput } from '../../molecules';
+import ImageModal from '../ImageModal';
+import MessageContext from '../../../contexts/Message.context';
 
 const cx = classNames.bind(styles);
 
 const ChattingLayout = ({
     botImageUrl,
     botName,
-    messages,
-    setMessages
+    messages
 }) => {
+    const { createMessage, sendMessage, status } = useContext(MessageContext);
     const [input, setInput] = useState("");
-    const [output, setOutput] = useState({});
-    const [status, setStatus] = useState("DONE");
+    const [modal, setModal] = useState(false);
+    const [image, setImage] = useState(void 0);
 
-    const timeStampReady = curry((ie, n) => ie
-    ? new Date().toLocaleTimeString('ko-KR').replace(/\u200E/g, '')
-    : new Date().toLocaleTimeString('ko-KR', { timeZone: 'Asia/Seoul' }));
-
-    useEffect(_ => {
-        setMessages([ ...messages, output ]);
-        setStatus("DONE");
-    }, [output]);
+    const toggle = _ => setModal(!modal);
 
     const onChange = ({ target: { value } }) => setInput(value);
 
     const readyForRequest = _ => {
         if (isEmpty(input)) return null;
-        const isIE = /*@cc_on!@*/false || !!document.documentMode;
-        const dateTime = timeStampReady(isIE, true);
-
-        const requestMessage = { type: "text", contents: input, dateTime: dateTime, isMe: true };
+        const requestMessage = { contentType: ["textRandom"], responseText: [input], isMe: true };
+        createMessage(requestMessage);
 
         setInput("");
-        setMessages([...messages, requestMessage]);
-        setStatus("DOING");
-
-        sendMessage(requestMessage.contents);
-    }
-
-    const sendMessage = async (content) => {
-        const { data } = await axios.post(
-            'http://localhost:3001/api/example', 
-            {
-                user_key: "newjeong_2019-12-26-02",
-                content: content
-            }
-        );
-        
-        const parseMessage = msg => {
-            const isIE = /*@cc_on!@*/false || !!document.documentMode;
-            const dateTime = timeStampReady(isIE, true);
-            let result = { dateTime: dateTime };
-            for (const type of msg.contentType) {
-                switch (type) {
-                    case "textRandom":
-                    case "sessionTimeOut":
-                        result.type = "text";
-                        result.contents = first(msg.responseText);
-                        break;
-                    case "image":
-                        result.type = "image";
-                        result.contents = msg.imageUrl;
-                    case "card":
-                        result.type = "card";
-                        result.contents = {
-                            url: msg.imageUrl,
-                            title: msg.responseTitle,
-                            text: first(msg.responseText)
-                        }
-                    case "button":
-                        result.buttons = msg.responseButtons;
-                }
-            }
-            return result;
-        }
-
-        const responseMessage = parseMessage(data.data);
-        setOutput(responseMessage);
+        sendMessage(first(requestMessage.responseText));
     }
 
     const onKeyPress = e => {
@@ -93,12 +41,7 @@ const ChattingLayout = ({
     }
 
     const sendBtnResponse = btn => {
-        const isIE = /*@cc_on!@*/false || !!document.documentMode;
-        const dateTime = timeStampReady(isIE, true);
-        const requestMessage = { type: "text", contents: btn.name, dateTime: dateTime, isMe: true };
-        setMessages([...messages, requestMessage]);
-        setStatus("DOING");
-
+        createMessage({ contentType: ["textRandom"], responseText: [btn.name], isMe: true });
         sendMessage(btn);
     }
 
@@ -116,6 +59,11 @@ const ChattingLayout = ({
         }
     }
 
+    const clickImg = e => {
+        setImage(e.target.src);
+        toggle(true);
+    }
+
     return <div className={cx('wrapper')}>
         <ChattingHeader 
         url={ botImageUrl } 
@@ -124,7 +72,8 @@ const ChattingLayout = ({
             <MessageList 
             messages={ messages }
             status={ status }
-            btnOnClick={ clickBtn } />
+            btnOnClick={ clickBtn }
+            imgOnClick={ clickImg } />
         </div>
         <div className={ cx('input-section') }>
             <MessageInput 
@@ -133,6 +82,7 @@ const ChattingLayout = ({
             onKeyPress={ onKeyPress } 
             onClick={ readyForRequest } />
         </div>
+        <ImageModal isOpen={ modal } toggle={ toggle } url={ image } />
     </div>
 }
 

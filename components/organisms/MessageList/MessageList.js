@@ -10,7 +10,8 @@ const cx = classNames.bind(styles);
 const MessageList = ({
     messages,
     status,
-    btnOnClick
+    btnOnClick,
+    imgOnClick
 }) => {
     const [scrollBottom, setScrollBottom] = useState(0);
     const listRef = useRef();
@@ -30,14 +31,14 @@ const MessageList = ({
     return (
         <div ref={ listRef } className={ cx('msg-list') }>
         {
-            messages.map(({ type, contents, dateTime, onClick, buttons = [], isMe = false }, msgIdx) => (
+            messages.map(({ type, contents, dateTime, buttons = [], isMe = false }, msgIdx) => (
                 <div className={ cx('msg', isMe ? 'msg-align-right' : 'msg-align-left') } key={ msgIdx }>
                     <Suspense fallback={ "로딩중..." }>
                         <MessageBox 
                         type={ type }
                         contents={ contents } 
                         dateTime={ dateTime }
-                        imgOnClick={ onClick }
+                        imgOnClick={ imgOnClick }
                         buttons={ buttons }
                         btnOnClick={ btnOnClick } />
                     </Suspense>

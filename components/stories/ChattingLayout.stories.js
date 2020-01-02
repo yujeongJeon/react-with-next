@@ -25,14 +25,13 @@ export const chattingLayout = () => {
         { type: "text", contents: "안녕", dateTime: dateTime, isMe: true },
         { type: "text", contents: "안녕하세요!\n상반기 취뽀, 이직을 도와드릴 잡플래닛 기업 채용 소식통 챗봇입니다", dateTime: dateTime, isMe: false },
         { type: "text", contents: "상반기 채용 알려줘", dateTime: dateTime, isMe: true },
-        { type: "image", contents: "http://localhost:3001/images/pexels-photo-617278.jpeg", dateTime: dateTime, isMe: false, onClick: action("onClick") }
+        { type: "image", contents: "http://localhost:3001/images/pexels-photo-617278.jpeg", dateTime: dateTime, isMe: false }
     ]);
 
     return <ChattingLayout 
     botImageUrl={ botImageUrl }
     botName={ botName }
-    messages={ messages }
-    setMessages={ action("setMessages") } />;
+    messages={ messages } />;
 };
 
 chattingLayout.story = {

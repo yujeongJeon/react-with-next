@@ -1,0 +1,64 @@
+$Phone : "Only screen and (max-width : 768px) ";
+$Desktop : "screen and (min-width : 769px)";
+
+.cover {
+    background-color: rgba(0, 0, 0, .27);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    overflow: hidden;
+
+    &.show {
+        display: block !important;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    outline: 0;
+    display: none;
+    overflow: hidden;
+    box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.03);
+    pointer-events: none;
+
+    &.show {
+        display: block !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+
+    &.show .modal-dialog {
+        margin: 0 auto;
+        // transform: translate(0, 0);
+        // transition: transform 0.3s ease-out;
+        position: relative;
+        pointer-events: auto;
+        outline: 0;
+        border-radius: 8px;
+        min-width: 0;
+        width: fit-content;
+
+        @media #{$Phone} {
+            max-width: 94%;
+
+            & .modal-header, .modal-footer {
+                height: 100%;
+            }
+        }
+        
+        @media #{$Desktop} {
+            max-width: 60%;
+
+            & .modal-header, .modal-footer {
+                height: 45px;
+            }
+        }
+    }
+}

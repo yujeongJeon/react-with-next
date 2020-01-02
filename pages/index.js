@@ -1,92 +1,72 @@
 import { ChattingLayout } from "../components/templates"
 import axios from 'axios';
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
+import MessageContext from "../contexts/Message.context";
 
-const Index = props => {
-    const [messages, setMessages] = useState([]);
-    // const router = useRouter();
+const Index = ({
+    name,
+    imageUrl
+}) => {
+    const router = useRouter();
 
-    // if (!router.query.bot) return null;
+    const { messages, sendMessage } = useContext(MessageContext);
+
+    const invalidURL = _ => {
+        const { apiKey, userId, accessKey, accessSecret } = router.query;
+
+        return isEmpty(apiKey) 
+        || isEmpty(accessKey) 
+        || isEmpty(accessSecret) 
+        || isEmpty(userId);
+    }
+
+    if (invalidURL()) return <div style={{ 
+        display: "flex", 
+        justifyContent: "center",
+        alignContent: "center",
+        margin: "10px 0"
+    }}>봇 정보가 잘못되었습니다.</div>;
 
     useEffect(_ => {
-        const isIE = /*@cc_on!@*/false || !!document.documentMode;
-        const timeStampReady = curry((ie, n) => ie
-            ? new Date().toLocaleTimeString('ko-KR').replace(/\u200E/g, '')
-            : new Date().toLocaleTimeString('ko-KR', { timeZone: 'Asia/Seoul' }));
-        const timestamp = timeStampReady(isIE);
-
-        const parseMessage = msg => {
-            let result = { dateTime: timestamp(true) };
-            for (const type of msg.contentType) {
-                switch (type) {
-                    case "textRandom":
-                        result.type = "text";
-                        result.contents = first(msg.responseText);
-                        break;
-                    case "image":
-                        result.type = "image";
-                        result.contents = msg.imageUrl;
-                    case "card":
-                        result.type = "card";
-                        result.contents = {
-                            url: msg.imageUrl,
-                            title: msg.responseTitle,
-                            text: first(msg.responseText)
-                        }
-                    case "button":
-                        result.buttons = msg.responseButtons;
-                }
-            }
-            return result;
-        }
-
-        const msg = parseMessage(props.msg);
-        setMessages([ ...messages, msg]);
-    }, [props.msg]);
+        sendMessage();
+    }, []);
 
     return (
         <ChattingLayout 
-        botImageUrl={ "/images/chatbot_avater.jpg" }
-        botName={ "봇 제목" }
-        messages={ messages }
-        setMessages={ setMessages } />
+        botImageUrl={ imageUrl }
+        botName={ name }
+        messages={ messages } />
     )
 }
 
 Index.getInitialProps = async ({ query }) => {
-    // TODO request Bot Data & sessionCheck
-    // query로 chatbotId, accessKey, accessSecret, userId 넘겨줘야 함
-    const { data } = await axios.post(
-        'http://localhost:3001/api/example', 
+    // query로 apiKey, accessKey, accessSecret, userId 넘겨줘야 함
+    const defaultImage = "/assets/leaflo-chatbot.png";
+    const { apiKey, userId, accessKey, accessSecret } = query;
+
+    const { data: botData } = await axios.post(
+        'http://localhost:3001/api/init',
         {
-            user_key: "newjeong_2019-12-26-02"
+            apiKey: apiKey,
+            accessKey: accessKey,
+            accessSecret: accessSecret
         }
     );
 
-    switch (data.code) {
+    switch (botData.code) {
         case "1000":
             return {
-                msg: data.data
+                name: botData.data.botName,
+                imageUrl: botData.data.botImageUrl || defaultImage
             }
-        case "5000":
+        case "9000":
+        case "9001":
+        default:
             return {
-                msg: {
-                    contentType:["textRandom"],
-                    inputType:"text",
-                    responseText: ["세션이 살아있습니다!\n내용을 입력해주세요."],
-                    responseButtons: []
-                }
-            }
-        default: 
-            return {
-                msg: {
-                    contentType:["textRandom"],
-                    inputType:"text",
-                    responseText: ["대화가 만료되었습니다 ㅠ_ㅠ"],
-                    responseButtons: []
-                }
+                name: "ERROR",
+                imageUrl: defaultImage
             }
     }
 }

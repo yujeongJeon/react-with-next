@@ -28,4 +28,12 @@ $Desktop : "screen and (min-width : 769px)";
         background-color: rgb(103, 95, 253);
         cursor: pointer;
     }
+
+    &.btn-link {
+        background-color: transparent !important;
+
+        &:hover,:active {
+            background-color: transparent !important;
+        }
+    }
 }

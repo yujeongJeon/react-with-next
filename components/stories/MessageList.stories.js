@@ -26,7 +26,7 @@ export const messageList = () => {
         { type: "image", contents: "http://localhost:3001/images/pexels-photo-617278.jpeg", dateTime: dateTime, isMe: false, onClick: action("onClick") }
     ]);
     const status = boolean("status", true);
-    return <MessageList messages={ messages } status={ status } btnOnClick={ action("btnOnClick") } />;
+    return <MessageList messages={ messages } status={ status } btnOnClick={ action("btnOnClick") } imgOnClick={ action("imgOnClick") } />;
 };
 
 messageList.story = {
