@@ -1,0 +1,118 @@
+/* https://github.com/nzbin/three-dots */
+$dotWidth: 10px;
+$dotHeight: 10px;
+$dotRadius: $dotWidth/2;
+
+$dotColor: #9880ff;
+$dotBgColor: $dotColor;
+$dotBeforeColor: $dotColor;
+$dotAfterColor: $dotColor;
+
+$dotSpacing: $dotWidth + $dotWidth/2;
+
+
+@mixin dot($width: $dotWidth, $height: $dotHeight, $radius: $dotRadius,$bgColor: $dotBgColor, $color: $dotColor ) {
+    width: $width;
+    height: $height;
+    border-radius: $radius;
+    background-color: $bgColor;
+    color: $color;
+}
+
+.dot-elastic {
+    position: relative;
+  
+    @include dot;
+  
+    animation: dotElastic 1s infinite linear;
+  
+    &::before,
+    &::after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 0;
+    }
+  
+    &::before {
+      left: - $dotSpacing;
+  
+      @include dot($bgColor: $dotBeforeColor);
+  
+      animation: dotElasticBefore 1s infinite linear;
+    }
+  
+    &::after {
+      left: $dotSpacing;
+  
+      @include dot($bgColor: $dotAfterColor);
+  
+      animation: dotElasticAfter 1s infinite linear;
+    }
+}
+  
+@keyframes dotElasticBefore {
+    0% {
+      transform: scale(1, 1);
+    }
+  
+    25% {
+      transform: scale(1, 1.5);
+    }
+  
+    50% {
+      transform: scale(1, .67);
+    }
+  
+    75% {
+      transform: scale(1, 1);
+    }
+  
+    100% {
+      transform: scale(1, 1);
+    }
+}
+  
+@keyframes dotElastic {
+    0% {
+      transform: scale(1, 1);
+    }
+  
+    25% {
+      transform: scale(1, 1);
+    }
+  
+    50% {
+      transform: scale(1, 1.5);
+    }
+  
+    75% {
+      transform: scale(1, 1);
+    }
+  
+    100% {
+      transform: scale(1, 1);
+    }
+}
+  
+@keyframes dotElasticAfter {
+    0% {
+      transform: scale(1, 1);
+    }
+  
+    25% {
+      transform: scale(1, 1);
+    }
+  
+    50% {
+      transform: scale(1, .67);
+    }
+  
+    75% {
+      transform: scale(1, 1.5);
+    }
+  
+    100% {
+      transform: scale(1, 1);
+    }
+}

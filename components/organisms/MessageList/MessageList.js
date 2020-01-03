@@ -3,6 +3,7 @@ import styles from './MessageList.module.scss';
 import React, { Suspense, useState, useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
 
+import { ChattingLoader } from '../../molecules';
 const MessageBox = React.lazy(_ => import('../../molecules/MessageBox'));
 
 const cx = classNames.bind(styles);
@@ -47,7 +48,7 @@ const MessageList = ({
         }
         {
             status === "DOING"
-            && <span>로딩 중 ...</span>
+            && <ChattingLoader />
         }
         </div>
     )
