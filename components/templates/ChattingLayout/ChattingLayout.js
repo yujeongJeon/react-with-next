@@ -2,11 +2,11 @@ import styles from './ChattingLayout.module.scss';
 
 import classNames from 'classnames/bind';
 import React, { useState, useContext } from 'react';
-
 import { ChattingHeader, MessageList } from '../../organisms';
 import { MessageInput } from '../../molecules';
 import ImageModal from '../ImageModal';
 import MessageContext from '../../../contexts/Message.context';
+import { Divider } from '../../atoms';
 
 const cx = classNames.bind(styles);
 
@@ -64,11 +64,22 @@ const ChattingLayout = ({
         toggle(true);
     }
 
+    let isIE = false;
+
+    if (typeof window !== 'undefined') {
+        isIE = /*@cc_on!@*/false || !!document.documentMode;
+    }
+    
+    const getDateTime = dateStampReady(isIE);
+
+    const currentDate = getDateTime(true);
+
     return <div className={cx('wrapper')}>
         <ChattingHeader 
         url={ botImageUrl } 
         name={ botName } />
         <div className={ cx('messages-section') }>
+            <Divider date={ currentDate } />
             <MessageList 
             messages={ messages }
             status={ status }

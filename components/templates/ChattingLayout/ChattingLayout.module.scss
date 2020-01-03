@@ -6,8 +6,8 @@ $bg-color: #E8E6FC;
     height: 100%;
 
     .messages-section {
-        padding: 10px 7px 5px;
-        height: calc(100vh - 55px - 45px - 10px - .5rem - 2px - 15px);
+        // padding: 10px 7px 5px;
+        height: calc(100vh - 55px - 45px - 10px - .5rem - 2px);
         overflow: auto;
     }
 

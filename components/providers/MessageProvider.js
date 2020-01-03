@@ -9,9 +9,6 @@ const MessageProvider = ({ children }) => {
 
     const createMessage = msg => {
         const isIE = /*@cc_on!@*/false || !!document.documentMode;
-        const timeStampReady = curry((ie, n) => ie
-            ? new Date().toLocaleTimeString('ko-KR').replace(/\u200E/g, '')
-            : new Date().toLocaleTimeString('ko-KR', { timeZone: 'Asia/Seoul' }));
         const timestamp = timeStampReady(isIE);
 
         let newMessage = { dateTime: timestamp(true) };
@@ -122,7 +119,7 @@ const MessageProvider = ({ children }) => {
                 createMessage({
                     contentType:["textRandom"],
                     inputType:"text",
-                    responseText: ["apiKey가 잘못되었습니다."],
+                    responseText: ["apiKey가 잘못되었습니다.\napiKey를 확인해주세요."],
                     responseButtons: []
                 });
                 break;

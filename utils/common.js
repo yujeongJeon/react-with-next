@@ -3,16 +3,6 @@ const Common = (function (){
         add: (a, b) => a + b,
         push: curry((v, arr) => (arr.push(v), arr)),
         set: curry(([k, v], obj) => (obj[k] = v, obj)),
-        // logf: curry((msg, arg) => {
-        //     if (arguments.length === 1) {
-        //         log(msg);
-        //         return msg;  
-        //     }
-        //     log(`## [LOGGING] [START] [${msg}] [${new Date()}] ##`);
-        //     log(arg);
-        //     log(`## [LOGGING] [END] [${msg}] [${new Date()}] ##`);
-        //     return arg;
-        // }),
         logf: msg => (log(msg), msg),
         spreadWithSpace: reduce((a, b) => `${a} ${b}`),
         isNotEmpty: coll => {
@@ -23,7 +13,6 @@ const Common = (function (){
             if (typeof coll === "string") return coll.length > 0 ? true : false;
             return false;
         },
-        isNull: coll => coll === null,
         isEmpty: coll => {
             if (coll === undefined) return true;
             if (coll instanceof Array) return coll.length == 0 ? true : false;
@@ -48,7 +37,17 @@ const Common = (function (){
                 a[property] > b[property] ? -1 : a[property] < b[property] ? 1 : 0)
         ),
         first: arr => !!arr[0] ? arr[0] : undefined,
-        last: arr => arr[arr.length-1]
+        last: arr => arr[arr.length-1],
+        timeStampReady: curry(
+            (ie, n) => ie
+                ? new Date().toLocaleTimeString('ko-KR').replace(/\u200E/g, '')
+                : new Date().toLocaleTimeString('ko-KR', { timeZone: 'Asia/Seoul' })
+        ),
+        dateStampReady: curry(
+            (ie, n) => ie
+            ? new Date().toLocaleDateString('ko-KR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+            : new Date().toLocaleDateString('ko-KR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+        )
     }
 })();
 
