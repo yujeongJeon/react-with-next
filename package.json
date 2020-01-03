@@ -4,9 +4,9 @@
   "description": "봇빌더 웹챗 SDK",
   "main": "index.js",
   "scripts": {
-    "dev": "next -p 3001",
+    "dev": "cross-env NEXT_ENV=development next -p 3001",
     "build": "next build",
-    "start": "next start",
+    "start": "cross-env NEXT_ENV=lcloud next start -p 3001",
     "storybook": "start-storybook -s ./public",
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
