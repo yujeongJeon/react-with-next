@@ -49,6 +49,39 @@ const MessageProvider = ({ children }) => {
         });
     }
 
+    const reconnectSession = async _ => {
+        setMessages(prevState => {
+            return {
+                ...prevState,
+                status: 'DOING'
+            }
+        });
+
+        const { data } = await axios.post(
+            'http://localhost:3001/api/message', 
+            {
+                user_key: userId,
+                accessKey: accessKey,
+                accessSecret: accessSecret,
+                apiKey: apiKey
+            }
+        );
+
+        switch (data.code) {
+            case "1000":
+                createMessage(data.data);
+                break;
+            default:
+                createMessage({
+                    contentType:["textRandom"],
+                    inputType:"text",
+                    responseText: ["서버와의 통신에서 오류가 발생하였습니다. 관리자에게 문의해주세요."],
+                    responseButtons: []
+                });
+        }
+        return;
+    }
+
     const sendMessage = async msg => {
         let options = {
             user_key: userId,
@@ -71,8 +104,11 @@ const MessageProvider = ({ children }) => {
     
         switch (data.code) {
             case "1000": // 정상
+                createMessage(data.data);
+                break;
             case "4000": // 세션 만료
                 createMessage(data.data);
+                setTimeout(reconnectSession, 1000);
                 break;
             case "5000": // 세션 유지
                 setMessages(prevState => {
