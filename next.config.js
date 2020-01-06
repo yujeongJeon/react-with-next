@@ -1,11 +1,15 @@
 const withSass = require("@zeit/next-sass");
 const withSourceMaps = require("@zeit/next-source-maps");
+const config = require('./config');
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true"
 });
 
 const nextConfig = {
+  env: {
+    config: config
+  },
   webpack(config, { webpack }) {
     config.plugins.push(
       // __tests__ 무시: 추후 기능 테스트용으로 cypress 적용

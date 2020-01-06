@@ -2,6 +2,7 @@ import React from "react";
 import { withKnobs, text, array } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import ChattingLayout from "../templates/ChattingLayout";
+import config from '../../config';
 
 export default {
   title: "components|templates/ChattingLayout", // 스토리북에서 보여질 그룹과 경로를 명시
@@ -21,7 +22,7 @@ export const chattingLayout = () => {
   // knobs 만들기
   const botImageUrl = text(
     "botImageUrl",
-    "http://localhost:3001/images/chatbot_avater.jpg"
+    `${config.api_server.api_domain}/images/chatbot_avater.jpg`
   );
   const botName = text("botName", "잡플래닛 채용봇");
   const messages = array("messages", [
@@ -48,7 +49,7 @@ export const chattingLayout = () => {
     },
     {
       type: "image",
-      contents: "http://localhost:3001/images/pexels-photo-617278.jpeg",
+      contents: `${config.api_server.api_domain}/images/pexels-photo-617278.jpeg`,
       dateTime: dateTime,
       isMe: false
     }

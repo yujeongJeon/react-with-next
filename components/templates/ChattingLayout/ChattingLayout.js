@@ -25,7 +25,7 @@ const DateDivider = _ => {
 };
 
 const ChattingLayout = ({ botImageUrl, botName, messages }) => {
-  const { createMessage, sendMessage, status } = useContext(MessageContext);
+  const { createMessage, sendMessage, refreshSession, status } = useContext(MessageContext);
   const [input, setInput] = useState("");
   const [modal, setModal] = useState(false);
   const [image, setImage] = useState(void 0);
@@ -82,9 +82,13 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
     toggle(true);
   };
 
+  const onRefresh = _ => {
+    refreshSession();
+  }
+
   return (
     <div className={cx("wrapper")}>
-      <ChattingHeader url={botImageUrl} name={botName} />
+      <ChattingHeader url={botImageUrl} name={botName} onRefresh={ onRefresh } />
       <div className={cx("messages-section")}>
         <DateDivider />
         <MessageList

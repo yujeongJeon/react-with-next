@@ -2,6 +2,7 @@ import React from "react";
 import MessageList from "../organisms/MessageList";
 import { withKnobs, text, boolean, array } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
+import config from '../../config';
 
 export default {
   title: "components|organisms/MessageList", // 스토리북에서 보여질 그룹과 경로를 명시
@@ -43,7 +44,7 @@ export const messageList = () => {
     },
     {
       type: "image",
-      contents: "http://localhost:3001/images/pexels-photo-617278.jpeg",
+      contents: `${config.api_server.api_domain}/images/pexels-photo-617278.jpeg`,
       dateTime: dateTime,
       isMe: false,
       onClick: action("onClick")

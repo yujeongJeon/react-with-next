@@ -1,5 +1,5 @@
 import { postMethod } from "../../utils/http";
-const config = require("../../config");
+import config from '../../config';
 
 const { respondJson, respondOnError } = require("../../utils/respond");
 const resultCode = require("../../utils/resultCode");
@@ -15,10 +15,10 @@ const routes = async (req, res) => {
         accessKey + ":" + accessSecret
       ).toString("base64")}`
     };
+    const url = config.api_server.interface_url;
 
     const { data } = await getBotInfo(
-      `http://210.93.145.11:8080/bot/${apiKey}`,
-      //`${config.api_server.base_url}/bot/${apiKey}`,
+      `${url}/bot/${apiKey}`,
       {},
       headers
     );

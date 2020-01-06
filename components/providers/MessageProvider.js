@@ -54,27 +54,20 @@ const MessageProvider = ({ children }) => {
       };
     });
 
-    const { data } = await axios.post("http://localhost:3001/api/message", {
+    const options = {
       user_key: userId,
       accessKey: accessKey,
       accessSecret: accessSecret,
       apiKey: apiKey
-    });
+    };
 
-    switch (data.code) {
-      case "1000":
-        createMessage(data.data);
-        break;
-      default:
-        createMessage({
-          contentType: ["textRandom"],
-          inputType: "text",
-          responseText: [
-            "서버와의 통신에서 오류가 발생하였습니다. 관리자에게 문의해주세요."
-          ],
-          responseButtons: []
-        });
-    }
+    const { data } = await axios.post(
+      `${process.env.config.api_server.api_domain}/api/message`,
+      options
+    );
+
+    switchResponse(data);
+
     return;
   };
 
@@ -93,11 +86,42 @@ const MessageProvider = ({ children }) => {
         status: "DOING"
       };
     });
+
     const { data } = await axios.post(
-      "http://localhost:3001/api/message",
+      `${process.env.config.api_server.api_domain}/api/message`,
       options
     );
 
+    switchResponse(data);
+
+    return;
+  };
+
+  const refreshSession = async _ => {
+    setMessages(prevState => {
+      return {
+        ...prevState,
+        messages: [],
+        status: "DOING"
+      };
+    });
+
+    let options = {
+      user_key: userId,
+      accessKey: accessKey,
+      accessSecret: accessSecret,
+      apiKey: apiKey
+    };
+
+    const { data } = await axios.post(
+      `${process.env.config.api_server.api_domain}/api/refresh`,
+      options
+    );
+
+    switchResponse(data);
+  }
+
+  const switchResponse = data => {
     switch (data.code) {
       case "1000": // 정상
         createMessage(data.data);
@@ -134,15 +158,14 @@ const MessageProvider = ({ children }) => {
         });
         break;
     }
-
-    return;
-  };
+  }
 
   const initState = {
     messages: [],
     status: "DONE",
     createMessage,
-    sendMessage
+    sendMessage,
+    refreshSession
   };
 
   const [messages, setMessages] = useState(initState);

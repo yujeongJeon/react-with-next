@@ -2,6 +2,7 @@ import React from "react";
 import ModalContent from "../molecules/Modal/ModalContent";
 import { withKnobs } from "@storybook/addon-knobs";
 import { Image } from "../atoms";
+import config from '../../config';
 
 export default {
   title: "components|molecules/ModalContent", // 스토리북에서 보여질 그룹과 경로를 명시
@@ -12,7 +13,7 @@ export default {
 export const modalContent = () => {
   return (
     <ModalContent>
-      <Image src={"http://localhost:3001/images/pexels-photo-617278.jpeg"} />
+      <Image src={ `${config.api_server.api_domain}/images/pexels-photo-617278.jpeg` } />
     </ModalContent>
   );
 };

@@ -4,13 +4,12 @@ import config from '../../config';
 const { respondJson, respondOnError } = require("../../utils/respond");
 const resultCode = require("../../utils/resultCode");
 
-const sendMessage = (url, body, headers) => postMethod(url, body, headers);
+const refreshSession = (url, body, headers) => postMethod(url, body, headers);
 
 const routes = async (req, res) => {
   try {
     const {
       user_key,
-      content = undefined,
       accessKey,
       accessSecret,
       apiKey
@@ -23,17 +22,19 @@ const routes = async (req, res) => {
     };
 
     let options = { user_key: user_key };
-    if (!isUndefined(content)) options["content"] = content;
     const url = config.api_server.interface_url;
-
-    const { data } = await sendMessage(
-      `${url}/test/${apiKey}/message`,
+    
+    const { data } = await refreshSession(
+      `${url}/test/${apiKey}/refresh`,
       options,
       headers
     );
 
-    respondJson(res, data.code, data.data);
+    if (!data) throw { message: "Can not Get Message From Server" };
+
+    return respondJson(res, data.code, data.data);
   } catch (error) {
+    log(error);
     return respondOnError(res, resultCode.error, error.message);
   }
 };

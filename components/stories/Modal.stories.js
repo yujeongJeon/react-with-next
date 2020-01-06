@@ -3,6 +3,7 @@ import Modal from "../organisms/Modal";
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import { Image, Button } from "../atoms";
+import config from '../../config';
 
 export default {
   title: "components|organisms/Modal", // 스토리북에서 보여질 그룹과 경로를 명시
@@ -14,7 +15,7 @@ export const modal = () => {
   // knobs 만들기
   const header = <>이미지 보기</>;
   const content = (
-    <Image src="http://localhost:3001/images/pexels-photo-617278.jpeg" />
+    <Image src={ `${config.api_server.api_domain}/images/pexels-photo-617278.jpeg` } />
   );
   const footer = <Button>버튼</Button>;
   const isOpen = boolean("isOpen", true);

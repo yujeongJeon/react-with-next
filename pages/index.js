@@ -12,7 +12,7 @@ const Index = ({ name, imageUrl }) => {
 
   const invalidURL = _ => {
     const { apiKey, userId, accessKey, accessSecret } = router.query;
-
+    
     return (
       isEmpty(apiKey) ||
       isEmpty(accessKey) ||
@@ -47,8 +47,7 @@ Index.getInitialProps = async ({ query }) => {
   // query로 apiKey, accessKey, accessSecret, userId 넘겨줘야 함
   const defaultImage = "/assets/leaflo-chatbot.png";
   const { apiKey, userId, accessKey, accessSecret } = query;
-
-  const { data: botData } = await axios.post("http://localhost:3001/api/init", {
+  const { data: botData } = await axios.post(`${process.env.config.api_server.api_domain}/api/init`, {
     apiKey: apiKey,
     accessKey: accessKey,
     accessSecret: accessSecret

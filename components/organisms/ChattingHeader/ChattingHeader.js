@@ -8,11 +8,11 @@ import { Button, Image } from "../../atoms";
 
 const cx = classNames.bind(styles);
 
-const ChattingHeader = ({ url, name }) => (
+const ChattingHeader = ({ url, name, onRefresh }) => (
   <div className={cx("header")}>
     <ChattingInfo url={url} title={name} />
     <div className={cx("btns")}>
-      <Button className={cx("btn-refresh")}>
+      <Button className={cx("btn-refresh")} onClick={ onRefresh }>
         <Image src={"/assets/leaflo-reload.png"} width="18px" height="18px" />
       </Button>
       <Button className={cx("btn-close")}>

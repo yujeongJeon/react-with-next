@@ -4,7 +4,8 @@ const MessageContext = createContext({
   messages: [],
   status: "",
   sendMessage: _ => {},
-  createMessage: _ => {}
+  createMessage: _ => {},
+  refreshSession: _ => {}
 });
 
 export default MessageContext;
