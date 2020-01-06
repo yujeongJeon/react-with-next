@@ -14,4 +14,4 @@ WORKDIR /app/webchat
 
 CMD npm run start
 
-EXPOSE 3001
+EXPOSE 4001
