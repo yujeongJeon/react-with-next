@@ -1,21 +1,21 @@
-$Phone : "Only screen and (max-width : 768px) ";
-$Desktop : "screen and (min-width : 769px)";
+$Phone: "Only screen and (max-width : 768px) ";
+$Desktop: "screen and (min-width : 769px)";
 
 .btn-list {
-    border-radius: 0;
-    width: 100%;
-    min-width: 185px;
-    margin-bottom: 8px;
+  border-radius: 0;
+  width: 100%;
+  min-width: 185px;
+  margin-bottom: 8px;
 
-    @media #{$Phone} {
-        height: 37.5px;
-    }
-    
-    @media #{$Desktop} {
-        height: 45px;
-    }
+  @media #{$Phone} {
+    height: 37.5px;
+  }
 
-    &:last-child {
-        margin-bottom: 0;
-    }
+  @media #{$Desktop} {
+    height: 45px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }

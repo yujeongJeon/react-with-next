@@ -1,37 +1,33 @@
 .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    background-color: #fff;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-
-    // & .btn.btn-link {
-    //     background-color: transparent;
-    // }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #fff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .modal-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 15px;
-    background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #fff;
 
-    &.end-of-modal {
-        padding-bottom: 20px;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-    }
+  &.end-of-modal {
+    padding-bottom: 20px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
 }
 
 .modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 15px;
-    background-color: #fff;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #fff;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
