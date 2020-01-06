@@ -1,12 +1,15 @@
-import '../utils/functional';
+import "../utils/functional";
 
-import { configure, addParameters } from '@storybook/react';
-import { themes } from '@storybook/theming';
+import { configure, addParameters } from "@storybook/react";
+import { themes } from "@storybook/theming";
 
 addParameters({
   options: {
-    theme: themes.dark,
-  },
+    theme: themes.dark
+  }
 });
 
-configure(require.context('../components/stories', true, /\.stories\.js$/), module);
+configure(
+  require.context("../components/stories", true, /\.stories\.js$/),
+  module
+);

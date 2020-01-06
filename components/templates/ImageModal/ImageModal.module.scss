@@ -1,10 +1,9 @@
 .modal {
+  & .img-download {
+    margin-right: 0.5rem;
+  }
 
-    & .img-download {
-        margin-right: .5rem;
-    }
-
-    & .text-dark {
-        color: #2f353a !important;
-    }
+  & .text-dark {
+    color: #2f353a !important;
+  }
 }
