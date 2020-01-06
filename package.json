@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NEXT_ENV=development next -p 3001",
     "build": "next build",
-    "start": "cross-env NEXT_ENV=lcloud next start -p 3001",
+    "start": "cross-env NEXT_ENV=lcloud npm run build && next start -p 3001",
     "storybook": "start-storybook -s ./public",
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",

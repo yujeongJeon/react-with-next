@@ -12,7 +12,6 @@ COPY . /app/webchat
 
 WORKDIR /app/webchat
 
-CMD npm run build
 CMD npm run start
 
 EXPOSE 3001
