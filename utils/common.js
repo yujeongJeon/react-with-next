@@ -42,11 +42,6 @@ const Common = (function (){
             (ie, n) => ie
                 ? new Date().toLocaleTimeString('ko-KR').replace(/\u200E/g, '')
                 : new Date().toLocaleTimeString('ko-KR', { timeZone: 'Asia/Seoul' })
-        ),
-        dateStampReady: curry(
-            (ie, n) => ie
-            ? new Date().toLocaleDateString('ko-KR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
-            : new Date().toLocaleDateString('ko-KR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
         )
     }
 })();

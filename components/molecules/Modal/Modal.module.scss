@@ -18,6 +18,12 @@
     align-items: center;
     padding: 10px 15px;
     background-color: #fff;
+
+    &.end-of-modal {
+        padding-bottom: 20px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
 }
 
 .modal-footer {
