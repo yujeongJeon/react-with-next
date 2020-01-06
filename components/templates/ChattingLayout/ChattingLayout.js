@@ -6,9 +6,21 @@ import { ChattingHeader, MessageList } from '../../organisms';
 import { MessageInput } from '../../molecules';
 import ImageModal from '../ImageModal';
 import MessageContext from '../../../contexts/Message.context';
-import { Divider } from '../../atoms';
+import dynamic from 'next/dynamic';
 
 const cx = classNames.bind(styles);
+
+const DynamicDivier = dynamic(
+    () => import('../../atoms/Divider'),
+    { ssr: false }
+)
+
+const DateDivider = _ => {
+    const currentDate = new Date().toLocaleDateString('ko-KR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    return (
+        <DynamicDivier date={ currentDate } />
+    )
+}
 
 const ChattingLayout = ({
     botImageUrl,
@@ -64,22 +76,12 @@ const ChattingLayout = ({
         toggle(true);
     }
 
-    let isIE = false;
-
-    if (typeof window !== 'undefined') {
-        isIE = /*@cc_on!@*/false || !!document.documentMode;
-    }
-    
-    const getDateTime = dateStampReady(isIE);
-
-    const currentDate = getDateTime(true);
-
     return <div className={cx('wrapper')}>
         <ChattingHeader 
         url={ botImageUrl } 
         name={ botName } />
         <div className={ cx('messages-section') }>
-            <Divider date={ currentDate } />
+            <DateDivider />
             <MessageList 
             messages={ messages }
             status={ status }

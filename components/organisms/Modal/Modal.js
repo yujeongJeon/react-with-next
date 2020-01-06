@@ -23,8 +23,9 @@ const Modal = ({
             <div className={ cx('modal', { 'show': isOpen }) }>
                 <div tabIndex="-1" className={ cx('modal-dialog') } style={ { top: top } } onClick={ disableToggle }>
                     <ModalHeader toggle={ toggle }>{ header }</ModalHeader>
-                    <ModalContent>{ content }</ModalContent>
-                    <ModalFooter>{ footer }</ModalFooter>
+                    <ModalContent endOfModal={ isEmpty(footer) }>{ content }</ModalContent>
+                    { isNotEmpty(footer) 
+                    && <ModalFooter>{ footer }</ModalFooter> }
                 </div>
             </div>
         </div>
@@ -34,7 +35,9 @@ const Modal = ({
 Modal.defaultProps = {
     top: "10%",
     isOpen: false,
-    toggle: _ => {}
+    toggle: _ => {},
+    header: void 0,
+    footer: void 0
 }
 
 export default Modal;

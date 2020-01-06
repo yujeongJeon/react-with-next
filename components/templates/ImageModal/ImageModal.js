@@ -13,17 +13,8 @@ const ImageModal = ({
     toggle,
     isOpen
 }) => {
-    const disableRightClick = e => e.preventDefault();
-    
     const header = <>이미지</>;
-    const content = <Image src={ url } onContextMenu={ disableRightClick } />;
-    const footer = <Button className={ cx('btn-link', 'text-dark') }>
-        <Image 
-        src={ "/assets/leaflo-download.png" } 
-        className={ cx('img-download') } 
-        width="17px" />
-        download
-        </Button>
+    const content = <Image src={ url } />;
 
     return (
         <Modal
@@ -31,8 +22,7 @@ const ImageModal = ({
         top={ "10%" } 
         toggle={ toggle }
         header={ header }
-        content={ content }
-        footer={ footer } />
+        content={ content } />
     )
 }
 
