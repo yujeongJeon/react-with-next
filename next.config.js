@@ -1,20 +1,24 @@
 const withSass = require("@zeit/next-sass");
 const withSourceMaps = require("@zeit/next-source-maps");
-const config = require('./config');
+const configFile = require('./config');
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true"
 });
 
 const nextConfig = {
-  env: {
-    config: config
-  },
   webpack(config, { webpack }) {
     config.plugins.push(
       // __tests__ 무시: 추후 기능 테스트용으로 cypress 적용
       new webpack.IgnorePlugin(/[\\/]__tests__[\\/]/)
     );
+
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        NEXT_ENV: JSON.stringify(process.env.NEXT_ENV),
+        API_DOMAIN: JSON.stringify(configFile.api_server.api_domain)
+      })
+    )
 
     // 폰트, 이미지 로딩
     config.module.rules.push({

@@ -62,7 +62,7 @@ const MessageProvider = ({ children }) => {
     };
 
     const { data } = await axios.post(
-      `${process.env.config.api_server.api_domain}/api/message`,
+      `${API_DOMAIN}/api/message`,
       options
     );
 
@@ -88,7 +88,7 @@ const MessageProvider = ({ children }) => {
     });
 
     const { data } = await axios.post(
-      `${process.env.config.api_server.api_domain}/api/message`,
+      `${API_DOMAIN}/api/message`,
       options
     );
 
@@ -114,7 +114,7 @@ const MessageProvider = ({ children }) => {
     };
 
     const { data } = await axios.post(
-      `${process.env.config.api_server.api_domain}/api/refresh`,
+      `${API_DOMAIN}/api/refresh`,
       options
     );
 
