@@ -7,6 +7,7 @@ import { MessageInput } from "../../molecules";
 import ImageModal from "../ImageModal";
 import MessageContext from "../../../contexts/Message.context";
 import dynamic from "next/dynamic";
+import  messageApi from '../../../public/scripts/message';
 
 const cx = classNames.bind(styles);
 
@@ -82,13 +83,17 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
     toggle(true);
   };
 
-  const onRefresh = _ => {
-    refreshSession();
-  }
+  const onRefresh = _ => refreshSession();
+
+  const onClose = _ => messageApi.close();
 
   return (
     <div className={cx("wrapper")}>
-      <ChattingHeader url={botImageUrl} name={botName} onRefresh={ onRefresh } />
+      <ChattingHeader 
+      url={botImageUrl} 
+      name={botName} 
+      onRefresh={ onRefresh }
+      onClose={ onClose } />
       <div className={cx("messages-section")}>
         <DateDivider />
         <MessageList

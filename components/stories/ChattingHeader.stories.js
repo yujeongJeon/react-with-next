@@ -15,7 +15,7 @@ export const chattingHeader = () => {
   
   const url = text("url", `${config.api_server.api_domain}/images/chatbot_avater.jpg`);
   const name = text("title", "잡플래닛 채용봇");
-  return <ChattingHeader url={url} name={name} onRefresh={ action('onRefresh') } />;
+  return <ChattingHeader url={url} name={name} onRefresh={ action('onRefresh') } onClose={ action('onClose') } />;
 };
 
 chattingHeader.story = {
