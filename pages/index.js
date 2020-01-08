@@ -4,7 +4,7 @@ import { useEffect, useContext } from "react";
 
 import { useRouter } from "next/router";
 import MessageContext from "../contexts/Message.context";
-import config from '../config';
+import messageApi from '../public/scripts/message';
 
 const Index = ({ name, imageUrl }) => {
   const router = useRouter();
@@ -37,6 +37,7 @@ const Index = ({ name, imageUrl }) => {
 
   useEffect(_ => {
     sendMessage();
+    messageApi.init();
   }, []);
 
   return (

@@ -46,6 +46,12 @@ const nextConfig = {
         }
       },
       {
+        test: /public[\\/].*\.(js)$/,
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
         test: /public[\\/].*\.(css)$/,
         use: {
           loader: "raw-loader"
