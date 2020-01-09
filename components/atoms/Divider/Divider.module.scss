@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .divider {
   width: 100%;
   display: flex;
@@ -11,6 +13,6 @@
     font-size: 0.75rem;
     text-align: center;
     border-radius: 1.5rem;
-    background-color: #d3cff9;
+    background-color: $--color-divider-bg;
   }
 }

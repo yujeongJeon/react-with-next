@@ -1,19 +1,21 @@
-.modal-header {
+@import "../../../styles/variables";
+
+@mixin modal($justifyContent: center) {
   display: flex;
-  justify-content: space-between;
+  justify-content: $justifyContent;
   align-items: center;
   padding: 10px 15px;
-  background-color: #fff;
+  background-color: $--color-modal-bg;
+}
+
+.modal-header {
+  @include modal($justifyContent: space-between);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 
 .modal-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 15px;
-  background-color: #fff;
+  @include modal;
 
   &.end-of-modal {
     padding-bottom: 20px;
@@ -23,11 +25,7 @@
 }
 
 .modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 10px 15px;
-  background-color: #fff;
+  @include modal($justifyContent: flex-end);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }

@@ -1,22 +1,22 @@
-$Phone: "Only screen and (max-width : 768px) ";
-$Desktop: "screen and (min-width : 769px)";
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
 
 .box-wrapper {
-  background-color: #fff;
-  color: #2f353a;
+  background-color: $--color-msg-box;
+  color: $--color-msg-text;
   border-radius: 0.25rem;
   box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.05);
   padding: 6px 9px 8px 9px;
   white-space: pre-wrap;
   position: relative;
 
-  @media #{$Phone} {
+  @include phone {
     font-size: 0.75rem;
     max-width: 65%;
     min-width: 20%;
   }
 
-  @media #{$Desktop} {
+  @include desktop {
     font-size: 1rem;
     max-width: 35%;
     min-width: 10%;
@@ -31,17 +31,20 @@ $Desktop: "screen and (min-width : 769px)";
   }
 
   .date-time {
-    color: #73818f;
+    color: $--color-date-time;
     text-align: right;
     position: absolute;
     bottom: 8px;
     right: 9px;
 
-    @media #{$Phone} {
+    @include phone {
       font-size: 0.5rem;
+      @include ie {
+        font-size: 0.75rem;
+      }
     }
 
-    @media #{$Desktop} {
+    @include desktop {
       font-size: 0.75rem;
     }
   }

@@ -1,0 +1,34 @@
+@import "./variables";
+
+@mixin media($queryOptions) {
+	@media #{$queryOptions} {
+    @content;
+  }
+}
+
+@mixin img(
+  $url: '', 
+  $position: center, 
+  $color: transparent
+) {
+  background: url($url) $position no-repeat $color;
+}
+
+@mixin phone {
+  @include media (#{$Phone}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @include media (#{$Desktop}) {
+    @content;
+  }
+}
+
+@mixin ie {
+  @include media("screen and (-ms-high-contrast: active), (-ms-high-contrast: none)") {
+    @content;
+  }
+}
+

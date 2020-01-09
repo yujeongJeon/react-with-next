@@ -25,6 +25,7 @@ const MessageProvider = ({ children }) => {
         case "image":
           newMessage.type = "image";
           newMessage.contents = msg.imageUrl;
+          break;
         case "card":
           newMessage.type = "card";
           newMessage.contents = {
@@ -32,8 +33,10 @@ const MessageProvider = ({ children }) => {
             title: msg.responseTitle,
             text: first(msg.responseText)
           };
+          break;
         case "button":
           newMessage.buttons = msg.responseButtons;
+          break;
       }
     }
 

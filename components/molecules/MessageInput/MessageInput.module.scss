@@ -1,3 +1,6 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
 .msg-wrapper {
   position: relative;
   width: 100%;
@@ -11,9 +14,23 @@
       width: 100%;
       height: 45px;
       font-size: 1rem;
+      
+      @include phone {
+        padding-right: calc(55px + .5rem + .5rem);
+        @include ie {
+          padding: 0.25rem 0 !important;
+        }
+      }
+
+      @include desktop {
+        padding-right: calc(80px + .5rem + .5rem);
+        @include ie {
+          padding: 0.25rem 0 !important;
+        }
+      }
 
       &:focus {
-        color: #2f353a;
+        color: $--color-input-text;
       }
     }
   }
@@ -21,10 +38,15 @@
   .btn-wrapper {
     position: absolute;
     top: 0.25rem;
-    right: 1rem;
-
+    right: .5rem;
+    
     .btn {
       height: 45px;
+      width: 80px;
+
+      @include phone {
+        width: 55px;
+      }
     }
   }
 }

@@ -1,0 +1,38 @@
+$Phone: "Only screen and (max-width : 768px) ";
+$Desktop: "screen and (min-width : 769px)";
+
+$--color-bg: #e8e6fc;
+$--color-main: #756ff1;
+$--color-main-text: #fff;
+
+/* btn */
+$--color-btn-hover: rgb(103, 95, 253);
+$--color-btn-disabled-text: #2f353a;
+
+/* divider */
+$--color-divider-bg: #d3cff9;
+
+
+/* input */
+$--color-input-bg: #fff;
+$--color-input-text: #2f353a;
+
+/* loader */
+$dotWidth: 10px;
+$dotHeight: 10px;
+$dotRadius: $dotWidth/2;
+
+$dotColor: #756ff1;
+$dotBgColor: $dotColor;
+$dotBeforeColor: $dotColor;
+$dotAfterColor: $dotColor;
+
+$dotSpacing: $dotWidth + $dotWidth/2;
+
+/* message */
+$--color-msg-box: #fff;
+$--color-msg-text: #2f353a;
+$--color-date-time: #73818f;
+
+/* modal */
+$--color-modal-bg: #fff;

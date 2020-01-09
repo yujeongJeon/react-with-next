@@ -1,3 +1,4 @@
+require("@babel/polyfill");
 const withSass = require("@zeit/next-sass");
 const withSourceMaps = require("@zeit/next-source-maps");
 const configFile = require('./config');
@@ -8,6 +9,15 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const nextConfig = {
   webpack(config, { webpack }) {
+    // Unshift polyfills in main entrypoint.
+    const originalEntry = config.entry;
+    config.entry = async () => {
+      const entries = await originalEntry();
+      if (entries['main.js']) {
+        entries['main.js'].unshift('./polyfill.js');
+      }
+      return entries;
+    };
     config.plugins.push(
       // __tests__ 무시: 추후 기능 테스트용으로 cypress 적용
       new webpack.IgnorePlugin(/[\\/]__tests__[\\/]/)

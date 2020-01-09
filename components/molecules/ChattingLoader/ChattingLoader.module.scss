@@ -1,5 +1,7 @@
+@import "../../../styles/variables";
+
 .loader-wrapper {
-  background-color: #fff;
+  background-color: $--color-msg-box;
   border-radius: 0.25rem;
   width: 100px;
   height: 45px;
