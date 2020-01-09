@@ -1,6 +1,6 @@
 import React from "react";
 import MessageBox from "../molecules/MessageBox";
-import { withKnobs, text, object, array } from "@storybook/addon-knobs";
+import { withKnobs, text, object, array, boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import config from '../../config';
 
@@ -24,12 +24,14 @@ export const TextMessage = () => {
     "텍스트 채팅 예시입니다.\n뭔가 길게 적어야 할 거 같은데 뭐라고 해야할지 모르겠습니다 ^_^;;;"
   );
   const dateTime = text("dateTime", timestamp);
+  const isMe = boolean("isMe", false);
   return (
     <MessageBox
       type={type}
       contents={contents}
       dateTime={dateTime}
       btnOnClick={action("btnOnClick")}
+      isMe={ isMe }
     />
   );
 };
@@ -45,6 +47,7 @@ export const ImageMessage = () => {
     `${config.api_server.api_domain}/images/pexels-photo-617278.jpeg`
   );
   const dateTime = text("dateTime", timestamp);
+  const isMe = boolean("isMe", false);
   return (
     <MessageBox
       type={type}
@@ -52,6 +55,7 @@ export const ImageMessage = () => {
       dateTime={dateTime}
       btnOnClick={action("btnOnClick")}
       imgOnClick={action("imgOnClick")}
+      isMe={ isMe }
     />
   );
 };
@@ -69,6 +73,7 @@ export const CardMessage = () => {
       "고먐미는 늘 최고야\n청아 단아 누나랑 오래오래 건강하게 살자!!!!!\n많이 사랑해\np.s. 사료 좀 잘 먹어줘...간식만 달라고 애교부리지 말고 -_-"
   });
   const dateTime = text("dateTime", timestamp);
+  const isMe = boolean("isMe", false);
   return (
     <MessageBox
       type={type}
@@ -76,6 +81,7 @@ export const CardMessage = () => {
       dateTime={dateTime}
       btnOnClick={action("btnOnClick")}
       imgOnClick={action("imgOnClick")}
+      isMe={ isMe }
     />
   );
 };
@@ -98,6 +104,7 @@ export const MessageWithButtons = () => {
     { name: "버튼 2" },
     { name: "버튼 3" }
   ]);
+  const isMe = boolean("isMe", false);
 
   return (
     <MessageBox
@@ -107,6 +114,7 @@ export const MessageWithButtons = () => {
       buttons={buttons}
       btnOnClick={action("btnOnClick")}
       imgOnClick={action("imgOnClick")}
+      isMe={ isMe }
     />
   );
 };

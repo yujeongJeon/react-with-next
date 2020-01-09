@@ -41,6 +41,7 @@ const MessageList = ({ messages, status, btnOnClick, imgOnClick }) => {
                 imgOnClick={imgOnClick}
                 buttons={buttons}
                 btnOnClick={btnOnClick}
+                isMe={ isMe }
               />
             </Suspense>
           </div>

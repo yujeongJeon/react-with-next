@@ -1,6 +1,21 @@
 @import "../../../styles/variables";
 @import "../../../styles/mixins";
 
+@mixin bubble($dir: left, $borderDir: border-left, $borderColorDir: border-right-color, $marginDir: margin-left) {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 18px solid transparent;
+  border-top: 0;
+  margin-top: -9px;
+  #{$dir}: 0;
+  #{$borderDir}: 0;
+  #{$borderColorDir}: $--color-msg-box;
+  #{$marginDir}: -18px;
+}
+
 .box-wrapper {
   background-color: $--color-msg-box;
   color: $--color-msg-text;
@@ -9,6 +24,24 @@
   padding: 6px 9px 8px 9px;
   white-space: pre-wrap;
   position: relative;
+
+  &.res-msg {
+    margin-left: 18px;
+    &::after {
+      @include bubble;
+    }
+  }
+  &.req-msg {
+    margin-right: 18px;
+    &::after {
+      @include bubble(
+        $dir: right, 
+        $borderDir:border-right, 
+        $borderColorDir:border-left-color, 
+        $marginDir:margin-right
+      );
+    }
+  }
 
   @include phone {
     font-size: 0.75rem;
