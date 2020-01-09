@@ -15,9 +15,10 @@ const MessageBox = ({
   dateTime,
   imgOnClick,
   buttons,
-  btnOnClick
+  btnOnClick,
+  isMe
 }) => (
-  <div className={cx("box-wrapper")}>
+  <div className={cx("box-wrapper", isMe ? "req-msg" : "res-msg")}>
     <div className={cx("contents")}>
       {type === "text" && <TextMessage text={contents} />}
       {type === "image" && <ImageMessage url={contents} onClick={imgOnClick} />}
