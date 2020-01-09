@@ -20,8 +20,7 @@ const MessageList = ({ messages, status, btnOnClick, imgOnClick }) => {
     _ => {
       if (listRef) {
         setScrollBottom(getBottom(listRef.current));
-
-        listRef.current.scrollIntoView(false);
+        listRef.current.scrollIntoView({ block: 'end' });
       }
     },
     [messages]

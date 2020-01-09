@@ -1,13 +1,13 @@
-$bg-color: #e8e6fc;
+@import '../../../styles/variables';
 
 .wrapper {
   position: relative;
-  background-color: $bg-color;
+  background-color: $--color-bg;
   height: 100%;
 
   .messages-section {
     // padding: 10px 7px 5px;
-    height: calc(100vh - 55px - 45px - 10px - 0.5rem - 2px);
+    height: calc(100vh - 55px - 45px - 10px - 0.5rem);
     overflow: auto;
   }
 

@@ -1,14 +1,13 @@
-$Phone: "Only screen and (max-width : 768px) ";
-$Desktop: "screen and (min-width : 769px)";
+@import "../../../../styles/variables";
+@import "../../../../styles/mixins";
 
 .card {
   .title {
     padding-bottom: 8px;
-    @media #{$Phone} {
+    @include phone {
       font-size: 1rem;
     }
-
-    @media #{$Desktop} {
+    @include desktop {
       font-size: 1.25rem;
     }
   }

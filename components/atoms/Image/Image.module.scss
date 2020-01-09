@@ -1,6 +1,8 @@
+@import "../../../styles/variables";
+
 .alt-image {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e8edf6;
+  background-color: $--color-bg;
 }

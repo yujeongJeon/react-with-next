@@ -1,15 +1,18 @@
 import styles from "./ImageMessage.module.scss";
 
-import React from "react";
+import React, { Suspense } from "react";
 import classNames from "classnames/bind";
-
-import { Image } from "../../../atoms";
 
 const cx = classNames.bind(styles);
 
+const Image = React.lazy(_ => import("../../../atoms/Image"));
+const skeleton = <div style={{ width: "100%", height: "100vh", backgroundColor: "#fff" }}></div>;
+
 const ImageMessage = ({ url, onClick }) => (
   <div className={cx("img-wrapper")}>
-    <Image src={url} className={cx("image")} onClick={onClick} />
+    <Suspense fallback={ skeleton }>
+      <Image src={url} className={cx("image")} onClick={onClick} />
+    </Suspense>
   </div>
 );
 

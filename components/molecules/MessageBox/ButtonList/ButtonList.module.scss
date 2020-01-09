@@ -1,5 +1,5 @@
-$Phone: "Only screen and (max-width : 768px) ";
-$Desktop: "screen and (min-width : 769px)";
+@import "../../../../styles/variables";
+@import "../../../../styles/mixins";
 
 .btn-list {
   border-radius: 0;
@@ -7,11 +7,10 @@ $Desktop: "screen and (min-width : 769px)";
   min-width: 185px;
   margin-bottom: 8px;
 
-  @media #{$Phone} {
+  @include phone {
     height: 37.5px;
   }
-
-  @media #{$Desktop} {
+  @include desktop {
     height: 45px;
   }
 

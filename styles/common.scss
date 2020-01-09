@@ -1,4 +1,8 @@
-body {
-  background-color: #f6f6fc;
+@import "./variables";
+
+html, body, div#__next {
+  background-color: $--color-bg;
   margin: 0 auto;
+  font-family: inherit;
+  height: 100%;
 }

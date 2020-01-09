@@ -1,41 +1,52 @@
-$Phone: "Only screen and (max-width : 768px) ";
-$Desktop: "screen and (min-width : 769px)";
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+@mixin btn(
+$width: fit-content, 
+$height: fit-content, 
+$radius: .5rem,
+$bgColor: $--color-main, 
+$color: $--color-main-text, 
+$font-size: 1rem,
+$padding: 0.25rem 0.75rem) {
+  font-size: $font-size;
+  background-color: $bgColor;
+  color: $color;
+  border-radius: $radius;
+  padding: $padding;
+  width: $width;
+  height: $height;
+}
 
 .btn {
+  @include btn;
   font-weight: 400;
-  background-color: #756ff1;
-  color: #fff;
   border: none;
-  border-radius: 0.5rem;
   outline: 0;
-  padding: 0.25rem 0.75rem;
   -webkit-transition: background-color 0.25s ease-in-out;
   transition: background-color 0.25s ease-in-out;
 
-  @media #{$Phone} {
-    font-size: 0.75rem;
-  }
-
-  @media #{$Desktop} {
-    font-size: 1rem;
+  @include phone {
+    font-size: .75rem;
   }
 
   &:disabled {
-    background-color: #e8edf6;
+    background-color: $--color-bg;
+    color: $--color-btn-disabled-text;
   }
 
   &:hover,
   :active {
-    background-color: rgb(103, 95, 253);
+    background-color: $--color-btn-hover;
     cursor: pointer;
   }
 
   &.btn-link {
-    background-color: transparent !important;
+    background-color: transparent;
 
     &:hover,
     :active {
-      background-color: transparent !important;
+      background-color: transparent;
     }
   }
 }
