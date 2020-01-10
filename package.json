@@ -12,7 +12,8 @@
     "storybook": "start-storybook -s ./public",
     "analyze": "set ANALYZE=true&& next build",
     "analyze:server": "set BUNDLE_ANALYZE=server&& next build",
-    "analyze:browser": "set BUNDLE_ANALYZE=browser&& next build"
+    "analyze:browser": "set BUNDLE_ANALYZE=browser&& next build",
+    "e2e:open": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "@storybook/addon-knobs": "^5.2.8",
     "@storybook/react": "^5.2.8",
     "classnames": "^2.2.6",
+    "cypress": "^3.8.1",
     "file-loader": "^5.0.2",
     "react-app-polyfill": "^1.0.5",
     "url-loader": "^3.0.0"
