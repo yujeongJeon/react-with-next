@@ -4,6 +4,7 @@
 node_modules/
 config/env/*
 .next
+_next
 public/images
 npm-debug.log
 yarn.lock
