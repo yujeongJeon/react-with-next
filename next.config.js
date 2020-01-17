@@ -8,6 +8,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 const nextConfig = {
+  distDir: '_next',
   webpack(config, { webpack }) {
     // Unshift polyfills in main entrypoint.
     const originalEntry = config.entry;
