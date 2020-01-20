@@ -11,7 +11,7 @@ target=`echo $result | cut -d ' ' -f9`
 sudo docker rmi $target
 
 sudo docker build -t leaflo-web-chat:v0.1 .
-sudo docker run --name=leaflo-web-chat --oom-score-adj=-1000 -d -v /etc/localtime:/etc/localtime:ro -e TZ=Asia/Seoul -p 4001:4001 leaflo-web-chat:v0.1
+sudo docker run --name=leaflo-web-chat --oom-score-adj=-1000 -d -v /etc/localtime:/etc/localtime:ro -e TZ=Asia/Seoul -p 4000:4000 leaflo-web-chat:v0.1
 
 echo "."
 echo "."

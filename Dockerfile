@@ -16,4 +16,4 @@ RUN node node_modules/node-sass/scripts/install.js
 
 CMD npm run start:linux
 
-EXPOSE 4001
+EXPOSE 4000
