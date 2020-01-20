@@ -50,6 +50,11 @@ Index.getInitialProps = async ({ query }) => {
   const defaultImage = "/assets/leaflo-chatbot.png";
   const { apiKey, userId, accessKey, accessSecret } = query;
 
+  if (isEmpty(apiKey) ||
+  isEmpty(accessKey) ||
+  isEmpty(accessSecret) ||
+  isEmpty(userId)) return {};
+
   const { data: botData } = await axios.post(`${API_DOMAIN}/api/init`, {
     apiKey: apiKey,
     accessKey: accessKey,
