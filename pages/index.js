@@ -2,27 +2,13 @@ import { ChattingLayout } from "../components/templates";
 import axios from "axios";
 import { useEffect, useContext } from "react";
 
-import { useRouter } from "next/router";
 import MessageContext from "../contexts/Message.context";
-import messageApi from '../public/scripts/message';
+import messageApi from "../public/scripts/message";
 
-const Index = ({ name, imageUrl }) => {
-  const router = useRouter();
-
+const Index = ({ name, imageUrl, apiKey, userId, accessKey, accessSecret }) => {
   const { messages, sendMessage } = useContext(MessageContext);
 
-  const invalidURL = _ => {
-    const { apiKey, userId, accessKey, accessSecret } = router.query;
-    
-    return (
-      isEmpty(apiKey) ||
-      isEmpty(accessKey) ||
-      isEmpty(accessSecret) ||
-      isEmpty(userId)
-    );
-  };
-
-  if (invalidURL())
+  if (!apiKey)
     return (
       <div
         style={{
@@ -46,14 +32,16 @@ const Index = ({ name, imageUrl }) => {
 };
 
 Index.getInitialProps = async ({ query }) => {
-  // query로 apiKey, accessKey, accessSecret, userId 넘겨줘야 함
   const defaultImage = "/assets/leaflo-chatbot.png";
   const { apiKey, userId, accessKey, accessSecret } = query;
 
-  if (isEmpty(apiKey) ||
-  isEmpty(accessKey) ||
-  isEmpty(accessSecret) ||
-  isEmpty(userId)) return {};
+  if (
+    isEmpty(apiKey) ||
+    isEmpty(accessKey) ||
+    isEmpty(accessSecret) ||
+    isEmpty(userId)
+  )
+    return {};
 
   const { data: botData } = await axios.post(`${API_DOMAIN}/api/init`, {
     apiKey: apiKey,
@@ -65,14 +53,22 @@ Index.getInitialProps = async ({ query }) => {
     case "1000":
       return {
         name: botData.data.botName,
-        imageUrl: botData.data.botImageUrl || defaultImage
+        imageUrl: botData.data.botImageUrl || defaultImage,
+        apiKey: apiKey,
+        userId: userId,
+        accessKey: accessKey,
+        accessSecret: accessSecret
       };
     case "9000":
     case "9001":
     default:
       return {
         name: "ERROR",
-        imageUrl: defaultImage
+        imageUrl: defaultImage,
+        apiKey: apiKey,
+        userId: userId,
+        accessKey: accessKey,
+        accessSecret: accessSecret
       };
   }
 };

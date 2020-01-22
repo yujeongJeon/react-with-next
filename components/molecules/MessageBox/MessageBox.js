@@ -16,18 +16,20 @@ const MessageBox = ({
   imgOnClick,
   buttons,
   btnOnClick,
-  isMe
+  isMe,
+  onLoad
 }) => (
   <div className={cx("box-wrapper", isMe ? "req-msg" : "res-msg")}>
     <div className={cx("contents")}>
       {type === "text" && <TextMessage text={contents} />}
-      {type === "image" && <ImageMessage url={contents} onClick={imgOnClick} />}
+      {type === "image" && <ImageMessage url={contents} onClick={imgOnClick} onLoad={ onLoad } />}
       {type === "card" && (
         <CardMessage
           url={contents.url}
           title={contents.title}
           text={contents.text}
           onClick={imgOnClick}
+          onLoad={ onLoad }
         />
       )}
     </div>

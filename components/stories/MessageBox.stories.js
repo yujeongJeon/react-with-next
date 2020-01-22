@@ -32,6 +32,7 @@ export const TextMessage = () => {
       dateTime={dateTime}
       btnOnClick={action("btnOnClick")}
       isMe={ isMe }
+      onLoad={ action("onLoad") }
     />
   );
 };
@@ -56,6 +57,7 @@ export const ImageMessage = () => {
       btnOnClick={action("btnOnClick")}
       imgOnClick={action("imgOnClick")}
       isMe={ isMe }
+      onLoad={ action("onLoad") }
     />
   );
 };
@@ -82,6 +84,7 @@ export const CardMessage = () => {
       btnOnClick={action("btnOnClick")}
       imgOnClick={action("imgOnClick")}
       isMe={ isMe }
+      onLoad={ action("onLoad") }
     />
   );
 };
@@ -115,6 +118,7 @@ export const MessageWithButtons = () => {
       btnOnClick={action("btnOnClick")}
       imgOnClick={action("imgOnClick")}
       isMe={ isMe }
+      onLoad={ action("onLoad") }
     />
   );
 };
