@@ -9,22 +9,24 @@ const MessageBox = React.lazy(_ => import("../../molecules/MessageBox"));
 const cx = classNames.bind(styles);
 
 const MessageList = ({ messages, status, btnOnClick, imgOnClick }) => {
-  const [scrollBottom, setScrollBottom] = useState(0);
+  const [imgHeight, setImgHeight] = useState(0);
   const listRef = useRef();
-
-  const getBottom = e => {
-    return e.scrollHeight;
-  };
 
   useEffect(
     _ => {
       if (listRef) {
-        setScrollBottom(getBottom(listRef.current));
         listRef.current.scrollIntoView({ block: 'end' });
       }
     },
     [messages]
   );
+
+  useEffect(_ => {
+    if (imgHeight > 0) listRef.current.scrollIntoView({ block: 'end' });
+    setImgHeight(0);
+  }, [imgHeight]);
+
+  const onLoad = ({ target: img }) => setImgHeight(img.height);
 
   return (
     <div ref={listRef} className={cx("msg-list")}>
@@ -42,6 +44,7 @@ const MessageList = ({ messages, status, btnOnClick, imgOnClick }) => {
                 buttons={buttons}
                 btnOnClick={btnOnClick}
                 isMe={ isMe }
+                onLoad={ onLoad }
               />
             </Suspense>
           </div>

@@ -1,12 +1,7 @@
-import styles from "./ImageModal.module.scss";
-
-import classNames from "classnames/bind";
 import React from "react";
 
 import { Modal } from "../../organisms";
-import { Image, Button } from "../../atoms";
-
-const cx = classNames.bind(styles);
+import { Image } from "../../atoms";
 
 const ImageModal = ({ url, toggle, isOpen }) => {
   const header = <>이미지</>;

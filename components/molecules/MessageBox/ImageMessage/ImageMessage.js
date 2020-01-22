@@ -8,10 +8,10 @@ const cx = classNames.bind(styles);
 const Image = React.lazy(_ => import("../../../atoms/Image"));
 const skeleton = <div style={{ width: "100%", height: "100vh", backgroundColor: "#fff" }}></div>;
 
-const ImageMessage = ({ url, onClick }) => (
+const ImageMessage = ({ url, onClick, onLoad }) => (
   <div className={cx("img-wrapper")}>
     <Suspense fallback={ skeleton }>
-      <Image src={url} className={cx("image")} onClick={onClick} />
+      <Image src={url} className={cx("image")} onClick={onClick} onLoad={ onLoad } />
     </Suspense>
   </div>
 );

@@ -155,7 +155,7 @@ const MessageProvider = ({ children }) => {
           contentType: ["textRandom"],
           inputType: "text",
           responseText: [
-            "서버와의 통신에서 오류가 발생하였습니다. 관리자에게 문의해주세요."
+            "서버와의 통신에서 오류가 발생하였습니다.\n챗봇 id, 인증 키, 인증 시크릿을 제대로 입력했는지 확인 바랍니다.\n\n미해결 시, 관리자에게 문의해주세요."
           ],
           responseButtons: []
         });
