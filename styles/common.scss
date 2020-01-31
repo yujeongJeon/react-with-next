@@ -1,5 +1,23 @@
 @import "./variables";
 
+body {
+  --main-color: #756ff1;
+  --mainText-color: #fff;
+  --bg-color: #e8e6fc;
+  --msg-color: #fff;
+  --msgText-color: #2f353a;
+  --btn-color: #756ff1;
+  --btnText-color: #fff;
+  --dividerBg-color: #d3cff9;
+  --dividerText-color: #2f353a;
+  --input-color: #fff;
+  --inputText-color: #2f353a;
+  --btnHover-color: #675FFD;
+  --dateTimeText-color: #73818f;
+  --modalBg-color: #fff;
+  --loader-color: #756ff1;
+}
+
 html, body, div#__next {
   background-color: $--color-bg;
   margin: 0 auto;

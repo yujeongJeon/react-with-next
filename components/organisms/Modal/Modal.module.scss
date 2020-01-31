@@ -27,6 +27,7 @@
   overflow: hidden;
   box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.03);
   pointer-events: none;
+  color: $--color-msg-text;
 
   &.show {
     display: block !important;

@@ -5,7 +5,12 @@ import { useEffect, useContext } from "react";
 import MessageContext from "../contexts/Message.context";
 import messageApi from "../public/scripts/message";
 
-const Index = ({ name, imageUrl, apiKey, userId, accessKey, accessSecret }) => {
+const Index = ({ 
+  name, 
+  imageUrl, 
+  apiKey, 
+  colorSet,
+  btnImageUrl }) => {
   const { messages, sendMessage } = useContext(MessageContext);
 
   if (!apiKey)
@@ -23,7 +28,13 @@ const Index = ({ name, imageUrl, apiKey, userId, accessKey, accessSecret }) => {
 
   useEffect(_ => {
     sendMessage();
-    messageApi.init();
+    messageApi.init(colorSet.main, colorSet.mainText, btnImageUrl);
+
+    const colorKeys = Object.keys(colorSet);
+
+    for (const key of colorKeys) {
+      document.body.style.setProperty(`--${key}-color`, colorSet[key]);
+    }
   }, []);
 
   return (
@@ -49,15 +60,18 @@ Index.getInitialProps = async ({ query }) => {
     accessSecret: accessSecret
   });
 
+  /**
+   * TODO webchat Color Set Setting
+   */
+
   switch (botData.code) {
     case "1000":
       return {
         name: botData.data.botName,
         imageUrl: botData.data.botImageUrl || defaultImage,
         apiKey: apiKey,
-        userId: userId,
-        accessKey: accessKey,
-        accessSecret: accessSecret
+        colorSet: botData.data.webChatColorSet,
+        btnImageUrl: botData.data.webChatBtnImage || null
       };
     case "9000":
     case "9001":
@@ -66,9 +80,8 @@ Index.getInitialProps = async ({ query }) => {
         name: "ERROR",
         imageUrl: defaultImage,
         apiKey: apiKey,
-        userId: userId,
-        accessKey: accessKey,
-        accessSecret: accessSecret
+        colorSet: {},
+        btnImageUrl: null
       };
   }
 };

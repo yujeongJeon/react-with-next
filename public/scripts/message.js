@@ -1,7 +1,11 @@
 module.exports = {
-  init: _ => {
+  init: (talkpopBgColor, talkpopTextColor, imageUrl) => {
     window.addEventListener("load", function(e) {
-      sendMsgToParent({event: "leaflo-ready"});
+      sendMsgToParent({event: "leaflo-ready", data: {
+        talkpopBgColor: talkpopBgColor,
+        talkpopTextColor: talkpopTextColor,
+        imageUrl: imageUrl
+      }});
     });
   
     function sendMsgToParent( msg ) {
