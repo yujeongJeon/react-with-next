@@ -23,6 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.7.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
     "@next/bundle-analyzer": "^9.1.6",
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-source-maps": "0.0.3",
@@ -36,6 +37,8 @@
   "devDependencies": {
     "@babel/node": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@storybook/addon-actions": "^5.2.8",
     "@storybook/addon-knobs": "^5.2.8",
     "@storybook/react": "^5.2.8",

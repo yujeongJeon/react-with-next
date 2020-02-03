@@ -1,10 +1,13 @@
 import styles from "./ChattingHeader.module.scss";
 
+import { faRedo, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import React from "react";
 import classNames from "classnames/bind";
 
 import { ChattingInfo } from "../../molecules";
-import { Button, Image } from "../../atoms";
+import { Button } from "../../atoms";
 
 const cx = classNames.bind(styles);
 
@@ -13,10 +16,10 @@ const ChattingHeader = ({ url, name, onRefresh, onClose }) => (
     <ChattingInfo url={url} title={name} />
     <div className={cx("btns")}>
       <Button className={cx("btn-refresh")} onClick={ onRefresh }>
-        <Image src={"/assets/leaflo-reload.png"} width="18px" height="18px" />
+        <FontAwesomeIcon icon={faRedo} />
       </Button>
       <Button className={cx("btn-close")} onClick={ onClose }>
-        <Image src={"/assets/leaflo-close.png"} width="15px" height="15px" />
+        <FontAwesomeIcon icon={faTimes} />
       </Button>
     </div>
   </div>
