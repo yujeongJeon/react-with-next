@@ -1,0 +1,3 @@
+@function setBorder($borderColor) {
+  @return 1px solid $borderColor;
+}

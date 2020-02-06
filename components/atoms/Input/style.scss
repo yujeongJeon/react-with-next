@@ -1,10 +1,10 @@
 @import "../../../styles/variables";
 
 .input {
-  background-color: $--color-input-bg;
-  color: $--color-input-text;
-  border: none;
-  border-radius: 0.5rem;
+  background-color: $--input;
+  color: $--inputText;
+  // border: none;
+  // border-radius: 0.5rem;
   padding: 0.25rem 0.75rem;
   outline: 0;
 

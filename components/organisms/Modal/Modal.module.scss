@@ -1,8 +1,10 @@
 @import "../../../styles/variables";
 @import "../../../styles/mixins";
+@import "../../../styles/functions.scss";
 
 .cover {
-  background-color: rgba(0, 0, 0, 0.27);
+  background-color: $--imageModalCover;
+  opacity: .27;
   position: fixed;
   top: 0;
   right: 0;
@@ -27,7 +29,7 @@
   overflow: hidden;
   box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.03);
   pointer-events: none;
-  color: $--color-msg-text;
+  color: $--imageModalText;
 
   &.show {
     display: block !important;
@@ -37,12 +39,11 @@
 
   &.show .modal-dialog {
     margin: 0 auto;
-    // transform: translate(0, 0);
-    // transition: transform 0.3s ease-out;
     position: relative;
     pointer-events: auto;
     outline: 0;
-    border-radius: 8px;
+    border-radius: $--imageModalBorderRadius;
+    border: setBorder($--imageModalBorder);
     min-width: 0;
     width: fit-content;
 

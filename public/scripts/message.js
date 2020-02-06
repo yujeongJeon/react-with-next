@@ -1,9 +1,11 @@
 module.exports = {
-  init: (talkpopBgColor, talkpopTextColor, imageUrl) => {
+  init: (talkpopBgColor, talkpopTextColor, talkPopBorder, talkPopBorderRadius, imageUrl) => {
     window.addEventListener("load", function(e) {
       sendMsgToParent({event: "leaflo-ready", data: {
         talkpopBgColor: talkpopBgColor,
         talkpopTextColor: talkpopTextColor,
+        talkPopBorder: talkPopBorder,
+        talkPopBorderRadius: talkPopBorderRadius,
         imageUrl: imageUrl
       }});
     });

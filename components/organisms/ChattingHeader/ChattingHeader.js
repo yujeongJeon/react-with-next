@@ -16,10 +16,10 @@ const ChattingHeader = ({ url, name, onRefresh, onClose }) => (
     <ChattingInfo url={url} title={name} />
     <div className={cx("btns")}>
       <Button className={cx("btn-refresh")} onClick={ onRefresh }>
-        <FontAwesomeIcon icon={faRedo} />
+        <FontAwesomeIcon icon={faRedo} size="lg" />
       </Button>
       <Button className={cx("btn-close")} onClick={ onClose }>
-        <FontAwesomeIcon icon={faTimes} />
+        <FontAwesomeIcon icon={faTimes} size="lg" />
       </Button>
     </div>
   </div>

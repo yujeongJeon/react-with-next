@@ -1,5 +1,6 @@
 @import "../../../styles/variables";
 @import "../../../styles/mixins";
+@import "../../../styles//functions.scss";
 
 .msg-wrapper {
   position: relative;
@@ -14,6 +15,10 @@
       width: 100%;
       height: 45px;
       font-size: 1rem;
+      background-color: $--input;
+      border-radius: $--inputBorderRadius;
+
+      border: setBorder($--inputBorder);
       
       @include phone {
         padding-right: calc(55px + .5rem + .5rem);
@@ -30,7 +35,7 @@
       }
 
       &:focus {
-        color: $--color-input-text;
+        color: $--inputText;
       }
     }
   }
@@ -43,6 +48,16 @@
     .btn {
       height: 45px;
       width: 80px;
+      background-color: $--inputBtn;
+      color: $--inputBtnText;
+      border: setBorder($--inputBtnBorder);
+      border-radius: $--inputBtnBorderRadius;
+
+      &:hover {
+        background-color: $--inputBtnHover;
+        color: $--inputBtnHoverText;
+        border: setBorder($--inputBtnHoverBorder);
+      }
 
       @include phone {
         width: 55px;

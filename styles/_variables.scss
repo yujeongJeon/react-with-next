@@ -1,39 +1,70 @@
 $Phone: "Only screen and (max-width : 768px) ";
 $Desktop: "screen and (min-width : 769px)";
 
-$--color-bg: var(--bg-color);
-$--color-main: var(--main-color);
-$--color-main-text: var(--mainText-color);
+/* header */
+$--header: var(--header);
+$--headerText: var(--headerText);
+$--headerBtn: var(--headerBtn);
+$--headerBtnHover: var(--headerBtnHover);
 
-/* btn */
-$--color-btn: var(--btn-color);
-$--color-btn-text: var(--btnText-color);
-$--color-btn-hover: var(--btnHover-color);
-$--color-btn-disabled-text: #2f353a;
+/* background */
+$--bg: var(--bg);
+$--divider: var(--divider);
+$--dividerText: var(--dividerText);
+$--dividerBorderRadius: var(--dividerBorderRadius);
 
-/* divider */
-$--color-divider-bg: var(--dividerBg-color);
-$--color-divider-text: var(--dividerText-color);
+/* inputMsg */
+$--inputMsg: var(--inputMsg);
+$--inputMsgText: var(--inputMsgText);
+$--inputMsgBorder: var(--inputMsgBorder);
+$--inputDateTimeText: var(--inputDateTimeText);
+$--inputMsgBorderRadius: var(--inputMsgBorderRadius);
+
+/* outputMsg */
+$--outputMsg: var(--outputMsg);
+$--outputMsgText: var(--outputMsgText);
+$--outputMsgBorder: var(--outputMsgBorder);
+$--outputDateTimeText: var(--outputDateTimeText);
+$--outputMsgBorderRadius: var(--outputMsgBorderRadius);
+$--loader: var(--loader);
+
+/* msgBtn */
+$--msgBtn: var(--msgBtn);
+$--msgBtnText: var(--msgBtnText);
+$--msgBtnBorder: var(--msgBtnBorder);
+$--msgBtnBorderRadius: var(--msgBtnBorderRadius);
+$--msgBtnHover: var(--msgBtnHover);
+$--msgBtnHoverText: var(--msgBtnHoverText);
+$--msgBtnHoverBorder: var(--msgBtnHoverBorder);
 
 /* input */
-$--color-input-bg: var(--input-color);
-$--color-input-text: var(--inputText-color);
+$--input: var(--input);
+$--inputText: var(--inputText);
+$--inputBorder: var(--inputBorder);
+$--inputBorderRadius: var(--inputBorderRadius);
 
-/* message */
-$--color-msg-box: var(--msg-color);
-$--color-msg-text: var(--msgText-color);
-$--color-date-time: var(--dateTimeText-color);
-$--color-loader: var(--loader-color);
+/* inputBtn */
+$--inputBtn: var(--inputBtn);
+$--inputBtnText: var(--inputBtnText);
+$--inputBtnBorder: var(--inputBtnBorder);
+$--inputBtnBorderRadius: var(--inputBtnBorderRadius);
+$--inputBtnHover: var(--inputBtnHover);
+$--inputBtnHoverText: var(--inputBtnHoverText);
+$--inputBtnHoverBorder: var(--inputBtnHoverBorder);
 
-/* modal */
-$--color-modal-bg: var(--modalBg-color);
+/* imageModal */
+$--imageModal: var(--imageModal);
+$--imageModalText: var(--imageModalText);
+$--imageModalCover: var(--imageModalCover);
+$--imageModalBorder: var(--imageModalBorder);
+$--imageModalBorderRadius: var(--imageModalBorderRadius);
 
 /* loader */
 $dotWidth: 10px;
 $dotHeight: 10px;
 $dotRadius: $dotWidth/2;
 
-$dotColor: $--color-loader;
+$dotColor: $--loader;
 $dotBgColor: $dotColor;
 $dotBeforeColor: $dotColor;
 $dotAfterColor: $dotColor;

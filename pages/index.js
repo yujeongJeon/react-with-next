@@ -28,12 +28,12 @@ const Index = ({
 
   useEffect(_ => {
     sendMessage();
-    messageApi.init(colorSet.main, colorSet.mainText, btnImageUrl);
+    messageApi.init(colorSet.talkPop, colorSet.talkPopText, colorSet.talkPopBorder, colorSet.talkPopBorderRadius, btnImageUrl);
 
     const colorKeys = Object.keys(colorSet);
 
     for (const key of colorKeys) {
-      document.body.style.setProperty(`--${key}-color`, colorSet[key]);
+      document.body.style.setProperty(`--${key}`, colorSet[key]);
     }
   }, []);
 
