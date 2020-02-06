@@ -1,7 +1,8 @@
 @import "../../../styles/variables";
 @import "../../../styles/mixins";
+@import "../../../styles//functions.scss";
 
-@mixin bubble($dir: left, $borderDir: border-left, $borderColorDir: border-right-color, $marginDir: margin-left) {
+@mixin bubble($dir: left, $borderDir: border-left, $borderColorDir: border-right-color, $marginDir: margin-left, $color: transparent) {
   content: '';
   position: absolute;
   top: 50%;
@@ -12,33 +13,108 @@
   margin-top: -9px;
   #{$dir}: 0;
   #{$borderDir}: 0;
-  #{$borderColorDir}: $--color-msg-box;
+  #{$borderColorDir}: $color;
+  #{$marginDir}: -18px;
+}
+
+@mixin bubbleWrapper ($dir: left, $borderDir: border-left, $borderColorDir: border-right-color, $marginDir: margin-left, $color: transparent) {
+  content: '';
+  position: absolute;
+  border: 20px solid transparent;
+  border-top: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  margin-top: -10px;
+  #{$dir}: -2px;
+  #{$borderDir}: 0;
+  #{$borderColorDir}: $color;
   #{$marginDir}: -18px;
 }
 
 .box-wrapper {
-  background-color: $--color-msg-box;
-  color: $--color-msg-text;
-  border-radius: 0.25rem;
   box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.05);
   padding: 6px 9px 8px 9px;
   white-space: pre-wrap;
   position: relative;
 
+  .date-time {
+    text-align: right;
+    position: absolute;
+    bottom: 8px;
+    right: 9px;
+
+    @include phone {
+      font-size: 0.5rem;
+      @include ie {
+        font-size: 0.75rem;
+      }
+    }
+
+    @include desktop {
+      font-size: 0.75rem;
+    }
+  }
+
   &.res-msg {
     margin-left: 18px;
+    background-color: $--outputMsg;
+    color: $--outputMsgText;
+    border-radius: $--outputMsgBorderRadius;
+    border: setBorder($--outputMsgBorder);
+
+    .date-time {
+      color: $--outputDateTimeText;
+    }
+
+    &::before {
+      @include bubbleWrapper(
+        $dir: left, 
+        $borderDir:border-left, 
+        $borderColorDir:border-right-color, 
+        $marginDir:margin-left,
+        $color: $--outputMsgBorder
+      )
+    }
+
     &::after {
-      @include bubble;
+      @include bubble(
+        $dir: left, 
+        $borderDir:border-left, 
+        $borderColorDir:border-right-color, 
+        $marginDir:margin-left,
+        $color: $--outputMsg
+      );
     }
   }
   &.req-msg {
     margin-right: 18px;
+    background-color: $--inputMsg;
+    color: $--inputMsgText;
+    border-radius: $--inputMsgBorderRadius;
+    border: setBorder($--inputMsgBorder);
+
+    .date-time {
+      color: $--inputDateTimeText;
+    }
+
+    &::before {
+      @include bubbleWrapper(
+        $dir: right, 
+        $borderDir:border-right, 
+        $borderColorDir:border-left-color, 
+        $marginDir:margin-right,
+        $color: $--inputMsgBorder
+      )
+    }
+
     &::after {
       @include bubble(
         $dir: right, 
         $borderDir:border-right, 
         $borderColorDir:border-left-color, 
-        $marginDir:margin-right
+        $marginDir:margin-right,
+        $color: $--inputMsg
       );
     }
   }
@@ -61,24 +137,18 @@
 
   .btns {
     padding-bottom: 20px;
-  }
 
-  .date-time {
-    color: $--color-date-time;
-    text-align: right;
-    position: absolute;
-    bottom: 8px;
-    right: 9px;
+    .btn {
+      background-color: $--msgBtn;
+      color: $--msgBtnText;
+      border-radius: $--msgBtnBorderRadius;
+      border: setBorder($--msgBtnBorder);
 
-    @include phone {
-      font-size: 0.5rem;
-      @include ie {
-        font-size: 0.75rem;
+      &:hover {
+        background-color: $--msgBtnHover;
+        color: $--msgBtnHoverText;
+        border: setBorder($--msgBtnHoverBorder);
       }
-    }
-
-    @include desktop {
-      font-size: 0.75rem;
     }
   }
 

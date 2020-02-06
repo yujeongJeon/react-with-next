@@ -5,17 +5,17 @@
   justify-content: $justifyContent;
   align-items: center;
   padding: 10px 15px;
-  background-color: $--color-modal-bg;
+  background-color: $--imageModal;
 }
 
 .modal-header {
   @include modal($justifyContent: space-between);
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  color: $--color-msg-text;
+  border-top-left-radius: $--imageModalBorderRadius;
+  border-top-right-radius: $--imageModalBorderRadius;
+  color: $--imageModalText;
 
   .btn {
-    color: $--color-msg-text;
+    color: $--imageModalText;
   }
 }
 
@@ -24,13 +24,13 @@
 
   &.end-of-modal {
     padding-bottom: 20px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: $--imageModalBorderRadius;
+    border-bottom-right-radius: $--imageModalBorderRadius;
   }
 }
 
 .modal-footer {
   @include modal($justifyContent: flex-end);
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: $--imageModalBorderRadius;
+  border-bottom-right-radius: $--imageModalBorderRadius;
 }

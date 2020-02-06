@@ -2,12 +2,11 @@
 
 .wrapper {
   position: relative;
-  background-color: $--color-bg;
+  background-color: $--bg;
   height: 100%;
 
   .messages-section {
-    // padding: 10px 7px 5px;
-    height: calc(100vh - 55px - 45px - 10px - 0.5rem);
+    height: calc(100vh - 55px - 2px - 45px - 10px - 0.5rem);
     overflow: auto;
   }
 

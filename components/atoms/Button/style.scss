@@ -5,8 +5,8 @@
 $width: fit-content, 
 $height: fit-content, 
 $radius: .5rem,
-$bgColor: $--color-btn, 
-$color: $--color-btn-text, 
+$bgColor: $--msgBtn, 
+$color: $--msgBtnText, 
 $font-size: 1rem,
 $padding: 0.25rem 0.75rem) {
   font-size: $font-size;
@@ -23,21 +23,20 @@ $padding: 0.25rem 0.75rem) {
   font-weight: 400;
   border: none;
   outline: 0;
-  -webkit-transition: background-color 0.25s ease-in-out;
-  transition: background-color 0.25s ease-in-out;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
   @include phone {
     font-size: .75rem;
   }
 
   &:disabled {
-    background-color: $--color-bg;
-    color: $--color-btn-disabled-text;
+    background-color: $--bg;
+    color: #2f353a;
   }
 
   &:hover,
   :active {
-    background-color: $--color-btn-hover;
     cursor: pointer;
   }
 
