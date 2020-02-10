@@ -12,11 +12,6 @@ const Index = ({
   colorSet,
   btnImageUrl }) => {
   const { messages, sendMessage } = useContext(MessageContext);
-  const validUrls = [
-    'http://localhost:3000',
-    'https://leaflo.ldcc.co.kr',
-    'http://10.131.7.162:9001'
-  ]
 
   if (!apiKey)
     return (
@@ -32,11 +27,9 @@ const Index = ({
     );
 
   const receiveIframeSign = e => {
-    if (validUrls.includes(e.origin)) {
-      if ("leaflo-import" === e.data.event) {
-        log("receive from parent ", e.origin);
-        messageApi.init(colorSet.talkPop, colorSet.talkPopText, colorSet.talkPopBorder, colorSet.talkPopBorderRadius, btnImageUrl);
-      }
+    if ("leaflo-import" === e.data.event) {
+      log("receive from parent ", e.origin);
+      messageApi.init(colorSet.talkPop, colorSet.talkPopText, colorSet.talkPopBorder, colorSet.talkPopBorderRadius, btnImageUrl);
     }
   }
 
