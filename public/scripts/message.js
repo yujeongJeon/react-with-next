@@ -11,7 +11,11 @@ module.exports = {
     });
   
     function sendMsgToParent( msg ) {
-      window.parent.postMessage( msg, '*' );
+      setTimeout(_ => {
+        console.log("send postMessage");
+        window.parent.postMessage(msg, '*');
+      }, 5000);
+      //window.parent.postMessage( msg, '*' );
     }
   },
   close: _ => {
