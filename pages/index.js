@@ -12,6 +12,11 @@ const Index = ({
   colorSet,
   btnImageUrl }) => {
   const { messages, sendMessage } = useContext(MessageContext);
+  const validUrls = [
+    'http://localhost:3000',
+    'https://leaflo.ldcc.co.kr',
+    'http://10.131.7.162:9001'
+  ]
 
   if (!apiKey)
     return (
@@ -26,9 +31,19 @@ const Index = ({
       </div>
     );
 
+  const receiveIframeSign = e => {
+    if (validUrls.includes(e.origin)) {
+      if ("leaflo-import" === e.data.event) {
+        log("receive from parent ", e.origin);
+        messageApi.init(colorSet.talkPop, colorSet.talkPopText, colorSet.talkPopBorder, colorSet.talkPopBorderRadius, btnImageUrl);
+      }
+    }
+  }
+
   useEffect(_ => {
+    window.addEventListener("message", receiveIframeSign);
     sendMessage();
-    messageApi.init(colorSet.talkPop, colorSet.talkPopText, colorSet.talkPopBorder, colorSet.talkPopBorderRadius, btnImageUrl);
+    //messageApi.init(colorSet.talkPop, colorSet.talkPopText, colorSet.talkPopBorder, colorSet.talkPopBorderRadius, btnImageUrl);
 
     const colorKeys = Object.keys(colorSet);
 
