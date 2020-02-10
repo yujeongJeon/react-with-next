@@ -65,7 +65,7 @@ const MessageProvider = ({ children }) => {
     };
 
     const { data } = await axios.post(
-      `${API_DOMAIN}/api/message`,
+      `${BASE_URL}/api/message`,
       options
     );
 
@@ -91,7 +91,7 @@ const MessageProvider = ({ children }) => {
     });
 
     const { data } = await axios.post(
-      `${API_DOMAIN}/api/message`,
+      `${BASE_URL}/api/message`,
       options
     );
 
@@ -117,7 +117,7 @@ const MessageProvider = ({ children }) => {
     };
 
     const { data } = await axios.post(
-      `${API_DOMAIN}/api/refresh`,
+      `${BASE_URL}/api/refresh`,
       options
     );
 
