@@ -28,7 +28,8 @@ const nextConfig = {
     config.plugins.push(
       new webpack.DefinePlugin({
         NEXT_ENV: JSON.stringify(process.env.NEXT_ENV),
-        API_DOMAIN: JSON.stringify(configFile.api_server.api_domain)
+        API_DOMAIN: JSON.stringify(configFile.api_server.api_domain),
+        BASE_URL: JSON.stringify(configFile.api_server.base_url),
       })
     )
 
