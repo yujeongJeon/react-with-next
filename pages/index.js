@@ -7,6 +7,8 @@ import {
   faSpinner
 } from "@fortawesome/free-solid-svg-icons";
 
+import cssVars from 'css-vars-ponyfill';
+
 import MessageContext from "../contexts/Message.context";
 import messageApi from "../public/scripts/message";
 
@@ -44,12 +46,83 @@ const Index = ({
     window.addEventListener("message", receiveIframeSign);
     sendMessage();
 
-    const colorKeys = Object.keys(colorSet);
+    //const colorKeys = Object.keys(colorSet);
 
-    for (const key of colorKeys) {
-      document.body.style.setProperty(`--${key}`, colorSet[key]);
-    }
-    setLoading(false);
+    // for (const key of colorKeys) {
+    //   document.body.style.setProperty(`--${key}`, colorSet[key]);
+    // }
+
+    cssVars({
+      // Targets
+      rootElement   : document,
+      shadowDOM     : true,
+      // Sources
+      include       : 'link[rel=stylesheet],link[as=style]',
+      exclude       : 'link[as=script]',
+      variables     : {
+        "--header": colorSet["header"],
+        "--headerText": colorSet["headerText"],
+        "--headerBtn": colorSet["headerBtn"],
+        "--headerBtnHover": colorSet["headerBtnHover"],
+        "--bg": colorSet["bg"],
+        "--divider": colorSet["divider"],
+        "--dividerText": colorSet["dividerText"],
+        "--dividerBorderRadius": colorSet["dividerBorderRadius"],
+        "--inputMsg": colorSet["inputMsg"],
+        "--inputMsgText": colorSet["inputMsgText"],
+        "--inputMsgBorder": colorSet["inputMsgBorder"],
+        "--inputDateTimeText": colorSet["inputDateTimeText"],
+        "--inputMsgBorderRadius": colorSet["inputMsgBorderRadius"],
+        "--outputMsg": colorSet["outputMsg"],
+        "--outputMsgText": colorSet["outputMsgText"],
+        "--outputMsgBorder": colorSet["outputMsgBorder"],
+        "--outputDateTimeText": colorSet["outputDateTimeText"],
+        "--outputMsgBorderRadius": colorSet["outputMsgBorderRadius"],
+        "--msgBtn": colorSet["msgBtn"],
+        "--msgBtnText": colorSet["msgBtnText"],
+        "--msgBtnBorder": colorSet["msgBtnBorder"],
+        "--msgBtnBorderRadius": colorSet["msgBtnBorderRadius"],
+        "--msgBtnHover": colorSet["msgBtnHover"],
+        "--msgBtnHoverText": colorSet["msgBtnHoverText"],
+        "--msgBtnHoverBorder": colorSet["msgBtnHoverBorder"],
+        "--loader": colorSet["loader"],
+        "--input": colorSet["input"],
+        "--inputText": colorSet["inputText"],
+        "--inputBorder": colorSet["inputBorder"],
+        "--inputBorderRadius": colorSet["inputBorderRadius"],
+        "--inputBtn": colorSet["inputBtn"],
+        "--inputBtnText": colorSet["inputBtnText"],
+        "--inputBtnBorder": colorSet["inputBtnBorder"],
+        "--inputBtnBorderRadius": colorSet["inputBtnBorderRadius"],
+        "--inputBtnHover": colorSet["inputBtnHover"],
+        "--inputBtnHoverText": colorSet["inputBtnHoverText"],
+        "--inputBtnHoverBorder": colorSet["inputBtnHoverBorder"],
+        "--imageModal": colorSet["imageModal"],
+        "--imageModalText": colorSet["imageModalText"],
+        "--imageModalCover": colorSet["imageModalCover"],
+        "--imageModalBorder": colorSet["imageModalBorder"],
+        "--imageModalBorderRadius": colorSet["imageModalBorderRadius"],
+        "--talkPop": colorSet["talkPop"],
+        "--talkPopText": colorSet["talkPopText"],
+        "--talkPopBorder": colorSet["talkPopBorder"],
+        "--talkPopBorderRadius": colorSet["talkPopBorderRadius"],
+      },
+      // Options
+      onlyLegacy    : false,
+      preserveStatic: true,
+      preserveVars  : false,
+      silent        : false,
+      updateDOM     : true,
+      updateURLs    : false,
+      watch         : false,
+      onSuccess(cssText, elm, url) {
+        const isIE = /*@cc_on!@*/false || !!document.documentMode;
+        isIE && setLoading(false)
+      },
+      onComplete(cssText, styleElms, cssVariables, benchmark) {
+        setLoading(false)
+      }
+    });
   }, []);
 
   if (loading)
