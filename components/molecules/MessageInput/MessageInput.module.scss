@@ -42,7 +42,7 @@
 
   .btn-wrapper {
     position: absolute;
-    top: 0.25rem;
+    top: calc(0.25rem + 1px);
     right: .5rem;
     
     .btn {
