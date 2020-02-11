@@ -12,10 +12,11 @@
     padding: 5px 7px;
 
     .btn {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       background-color: transparent;
       color: $--headerBtn;
+      text-align: center;
 
       &:hover {
         color: $--headerBtnHover;
@@ -23,6 +24,10 @@
     }
     .btn-refresh {
       margin-right: 0.5rem;
+      font-size: 12.5px !important;
+    }
+    .btn-close {
+      font-size: 15px !important;
     }
   }
 }

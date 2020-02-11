@@ -1,6 +1,11 @@
 import { ChattingLayout } from "../components/templates";
 import axios from "axios";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSpinner
+} from "@fortawesome/free-solid-svg-icons";
 
 import MessageContext from "../contexts/Message.context";
 import messageApi from "../public/scripts/message";
@@ -12,6 +17,7 @@ const Index = ({
   colorSet,
   btnImageUrl }) => {
   const { messages, sendMessage } = useContext(MessageContext);
+  const [loading, setLoading] = useState(true);
 
   if (!apiKey)
     return (
@@ -19,8 +25,9 @@ const Index = ({
         style={{
           display: "flex",
           justifyContent: "center",
-          alignContent: "center",
-          margin: "10px 0"
+          alignItems: "center",
+          width: "100%",
+          height: "100vh"
         }}>
         봇 정보가 잘못되었습니다.
       </div>
@@ -36,14 +43,28 @@ const Index = ({
   useEffect(_ => {
     window.addEventListener("message", receiveIframeSign);
     sendMessage();
-    //messageApi.init(colorSet.talkPop, colorSet.talkPopText, colorSet.talkPopBorder, colorSet.talkPopBorderRadius, btnImageUrl);
 
     const colorKeys = Object.keys(colorSet);
 
     for (const key of colorKeys) {
       document.body.style.setProperty(`--${key}`, colorSet[key]);
     }
+    setLoading(false);
   }, []);
+
+  if (loading)
+    return (
+      <div style={{
+        color: "rgba(0,0,0,.15)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "100vh"
+      }}>
+        <FontAwesomeIcon icon={faSpinner} pulse size="3x" />
+      </div>
+    )
 
   return (
     <ChattingLayout botImageUrl={imageUrl} botName={name} messages={messages} />
@@ -67,10 +88,6 @@ Index.getInitialProps = async ({ query }) => {
     accessKey: accessKey,
     accessSecret: accessSecret
   });
-
-  /**
-   * TODO webchat Color Set Setting
-   */
 
   switch (botData.code) {
     case "1000":
