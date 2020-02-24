@@ -1,7 +1,7 @@
 import styles from "./ChattingLayout.module.scss";
 
 import classNames from "classnames/bind";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { ChattingHeader, MessageList } from "../../organisms";
 import { MessageInput } from "../../molecules";
 import ImageModal from "../ImageModal";
@@ -30,6 +30,8 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
   const [input, setInput] = useState("");
   const [modal, setModal] = useState(false);
   const [image, setImage] = useState(void 0);
+
+  let listRef = useRef();
 
   const toggle = _ => setModal(!modal);
 
@@ -87,6 +89,10 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
   const onClose = _ => messageApi.close();
 
+  const onFocus = _ => {
+    listRef.current.scrollIntoView({ block: 'end' });
+  }
+
   return (
     <div className={cx("wrapper")}>
       <ChattingHeader 
@@ -97,6 +103,7 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
       <div className={cx("messages-section")}>
         <DateDivider />
         <MessageList
+          innerRef={listRef}
           messages={messages}
           status={status}
           btnOnClick={clickBtn}
@@ -109,6 +116,7 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
           onChange={onChange}
           onKeyPress={onKeyPress}
           onClick={readyForRequest}
+          onFocus={onFocus}
         />
       </div>
       <ImageModal isOpen={modal} toggle={toggle} url={image} />
