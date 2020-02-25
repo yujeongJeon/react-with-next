@@ -12,6 +12,7 @@ const Input = ({ type, name, value, onChange, className, ...rest }) =>
       value={value}
       onChange={onChange}
       className={cx("input", className)}
+      ref={ rest.innerref || null  }
       {...rest}
     />
   ) : (

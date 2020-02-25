@@ -7,7 +7,7 @@ import { Button, Input } from "../../atoms";
 
 const cx = classNames.bind(styles);
 
-const MessageInput = ({ message, onChange, onKeyPress, onClick, onFocus }) => (
+const MessageInput = ({ message, onChange, onKeyPress, onClick, ...rest }) => (
   <form className={cx("msg-wrapper")}>
     <div className={cx("input-wrapper")}>
       <Input
@@ -16,7 +16,7 @@ const MessageInput = ({ message, onChange, onKeyPress, onClick, onFocus }) => (
         value={message}
         onChange={onChange}
         onKeyPress={onKeyPress}
-        onFocus={onFocus}
+        { ...rest }
       />
     </div>
     <div className={cx("btn-wrapper")}>

@@ -44,7 +44,8 @@ const Common = (function() {
       ie
         ? new Date().toLocaleTimeString("ko-KR").replace(/\u200E/g, "")
         : new Date().toLocaleTimeString("ko-KR", { timeZone: "Asia/Seoul" })
-    )
+    ),
+    btoa: str => Buffer.from(str).toString('base64')
   };
 })();
 
