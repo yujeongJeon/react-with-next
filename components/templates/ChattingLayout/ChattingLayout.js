@@ -1,7 +1,7 @@
 import styles from "./ChattingLayout.module.scss";
 
 import classNames from "classnames/bind";
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useLayoutEffect } from "react";
 import { ChattingHeader, MessageList } from "../../organisms";
 import { MessageInput } from "../../molecules";
 import ImageModal from "../ImageModal";
@@ -32,6 +32,7 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
   const [image, setImage] = useState(void 0);
 
   let listRef = useRef();
+  let inputRef = useRef();
 
   const toggle = _ => setModal(!modal);
 
@@ -54,6 +55,7 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
     if (e.charCode === 13) {
       e.preventDefault();
       readyForRequest();
+      inputRef.current.focus();
     }
   };
 
@@ -89,9 +91,17 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
   const onClose = _ => messageApi.close();
 
-  const onFocus = _ => {
-    listRef.current.scrollIntoView({ block: 'end' });
-  }
+  useLayoutEffect(_ => {
+    const detectMobileKeyboard = _ => {
+      if(document.activeElement.tagName=="INPUT"){
+        listRef.current.scrollIntoView({ block: 'end' });
+      }
+    }
+
+    window.addEventListener("resize", detectMobileKeyboard);
+
+    return _ => window.removeEventListener("resize", detectMobileKeyboard);
+  }, []);
 
   return (
     <div className={cx("wrapper")}>
@@ -112,11 +122,11 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
       </div>
       <div className={cx("input-section")}>
         <MessageInput
+          innerref={inputRef}
           message={input}
           onChange={onChange}
           onKeyPress={onKeyPress}
           onClick={readyForRequest}
-          onFocus={onFocus}
         />
       </div>
       <ImageModal isOpen={modal} toggle={toggle} url={image} />

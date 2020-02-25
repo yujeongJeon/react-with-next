@@ -1,13 +1,22 @@
 import { postMethod } from "../../utils/http";
 import config from '../../config';
+import * as moment from 'moment';
 
 const { respondJson, respondOnError } = require("../../utils/respond");
 const resultCode = require("../../utils/resultCode");
 
 const refreshSession = (url, body, headers) => postMethod(url, body, headers);
 
+const routerName = "Refresh";
+
 const routes = async (req, res) => {
   try {
+    log(
+      "[Logger]::[Controller]::[%sController]::[Access Time %s]",
+      routerName,
+      moment().format("YYYY-MM-DD HH:mm:ss")
+    );
+
     const {
       user_key,
       accessKey,
@@ -16,9 +25,10 @@ const routes = async (req, res) => {
     } = req.body;
 
     const headers = {
-      Authorization: `Basic ${new Buffer(
+      Authorization: `Basic ${btoa(
         accessKey + ":" + accessSecret
-      ).toString("base64")}`
+      )}`,
+      'User-Agent': req.headers["user-agent"]
     };
 
     let options = { user_key: user_key };
