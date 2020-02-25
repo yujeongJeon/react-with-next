@@ -49,13 +49,13 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
     setInput("");
     sendMessage(first(requestMessage.responseText));
+    inputRef.current.focus();
   };
 
   const onKeyPress = e => {
     if (e.charCode === 13) {
       e.preventDefault();
       readyForRequest();
-      inputRef.current.focus();
     }
   };
 
