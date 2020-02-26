@@ -37,7 +37,9 @@ const Index = ({
 
   const receiveIframeSign = e => {
     if ("leaflo-import" === e.data.event) {
-      log("receive from parent ", e.origin);
+      if (!isUndefined(window.console)) {
+        log("receive from parent ", e.origin);
+      }
       messageApi.init(colorSet.talkPop, colorSet.talkPopText, colorSet.talkPopBorder, colorSet.talkPopBorderRadius, btnImageUrl);
     }
   }
@@ -45,12 +47,6 @@ const Index = ({
   useEffect(_ => {
     window.addEventListener("message", receiveIframeSign);
     sendMessage();
-
-    //const colorKeys = Object.keys(colorSet);
-
-    // for (const key of colorKeys) {
-    //   document.body.style.setProperty(`--${key}`, colorSet[key]);
-    // }
 
     cssVars({
       // Targets
