@@ -3,7 +3,7 @@ import styles from "./Modal.module.scss";
 import React from "react";
 import classNames from "classnames/bind";
 
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Button } from "../../atoms";
@@ -11,22 +11,17 @@ import { Button } from "../../atoms";
 const cx = classNames.bind(styles);
 
 const ModalHeader = ({ children, toggle }) => (
-  children
-  ? <div className={cx("modal-header")}>
-      {children}
-      <Button className={"btn-link"} onClick={toggle}>
-        <FontAwesomeIcon icon={faTimes} />
-      </Button>
-    </div>
-  : <div className={cx("modal-header", "empty")}>
-      <Button className={"btn-link"} onClick={toggle}>
-        <FontAwesomeIcon icon={faTimes} />
-      </Button>
-    </div>
+  <div className={cx("modal-header")}>
+    <Button className={"btn-link"} onClick={toggle}>
+      <FontAwesomeIcon icon={faArrowLeft} />
+    </Button>
+    {children}
+  </div>
 );
 
 ModalHeader.defaultProps = {
-  toggle: _ => {}
+  toggle: _ => {},
+  children: void 0
 };
 
 export default ModalHeader;

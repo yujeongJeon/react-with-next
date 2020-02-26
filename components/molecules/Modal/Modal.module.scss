@@ -6,18 +6,14 @@
   justify-content: $justifyContent;
   align-items: center;
   padding: 0 7px;
-  background-color: rgba(0,0,0,.17);
+  background-color: rgb(46, 46, 46);
 }
 
 .modal-header {
-  @include modal($justifyContent: space-between);
+  @include modal($justifyContent: flex-start);
   color: #fff;
   height: 55px;
   border-radius: 0;
-
-  &.empty {
-    @include modal($justifyContent: flex-end);
-  }
 
   .btn {
     color: #fff;
@@ -38,7 +34,7 @@
   }
 
   @include desktop {
-    max-height: 500px;
+    min-height: calc(100vh - 55px - 40px);
   }
 }
 
