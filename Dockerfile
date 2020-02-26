@@ -10,10 +10,13 @@ RUN echo 'npm  version : ' &&  npm --version
 
 COPY . /app/webchat
 
+RUN cd /app/webchat; npm run build
+
 WORKDIR /app/webchat
 
-RUN node node_modules/node-sass/scripts/install.js
+#RUN node node_modules/node-sass/scripts/install.js
 
-CMD npm run start:linux
+ENV NEXT_ENV production
+CMD npm run start:prod
 
-EXPOSE 4001
+#EXPOSE 4001
