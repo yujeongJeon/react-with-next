@@ -7,7 +7,7 @@ $height: fit-content,
 $radius: .5rem,
 $bgColor: $--msgBtn, 
 $color: $--msgBtnText, 
-$font-size: 1rem,
+$font-size: 18px,
 $padding: 0.25rem 0.75rem) {
   font-size: $font-size;
   background-color: $bgColor;
@@ -27,7 +27,7 @@ $padding: 0.25rem 0.75rem) {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
   @include phone {
-    font-size: .75rem;
+    font-size: 14px;
   }
 
   &:disabled {

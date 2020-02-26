@@ -5,10 +5,10 @@
   .title {
     padding: 8px 0;
     @include phone {
-      font-size: 1rem;
+      font-size: 16px;
     }
     @include desktop {
-      font-size: 1.25rem;
+      font-size: 18px;
     }
   }
 

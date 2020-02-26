@@ -1,37 +1,49 @@
 @import "../../../styles/variables";
+@import "../../../styles/mixins";
 
 @mixin modal($justifyContent: center) {
   display: flex;
   justify-content: $justifyContent;
   align-items: center;
-  padding: 10px 15px;
-  background-color: $--imageModal;
+  padding: 0 7px;
+  background-color: rgba(0,0,0,.17);
 }
 
 .modal-header {
   @include modal($justifyContent: space-between);
-  border-top-left-radius: $--imageModalBorderRadius;
-  border-top-right-radius: $--imageModalBorderRadius;
-  color: $--imageModalText;
+  color: #fff;
+  height: 55px;
+  border-radius: 0;
+
+  &.empty {
+    @include modal($justifyContent: flex-end);
+  }
 
   .btn {
-    color: $--imageModalText;
+    color: #fff;
     font-size: 17px;
   }
 }
 
 .modal-content {
   @include modal;
+  padding: 20px 15px !important;
 
-  &.end-of-modal {
-    padding-bottom: 20px;
-    border-bottom-left-radius: $--imageModalBorderRadius;
-    border-bottom-right-radius: $--imageModalBorderRadius;
+  @include phone {
+    height: calc(100vh - 55px - 40px - 55px);
+
+    &.end-of-modal {
+      height: calc(100vh - 55px - 40px);
+    }
+  }
+
+  @include desktop {
+    max-height: 500px;
   }
 }
 
 .modal-footer {
   @include modal($justifyContent: flex-end);
-  border-bottom-left-radius: $--imageModalBorderRadius;
-  border-bottom-right-radius: $--imageModalBorderRadius;
+  height: 55px;
+  border-radius: 0;
 }

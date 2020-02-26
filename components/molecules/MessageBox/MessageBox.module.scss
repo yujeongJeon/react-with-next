@@ -45,14 +45,14 @@
     right: 9px;
 
     @include phone {
-      font-size: 0.5rem;
+      font-size: 12px;
       @include ie {
-        font-size: 0.75rem;
+        font-size: 14px;
       }
     }
 
     @include desktop {
-      font-size: 0.75rem;
+      font-size: 14px;
     }
   }
 
@@ -120,13 +120,13 @@
   }
 
   @include phone {
-    font-size: 0.75rem;
+    font-size: 14px;
     max-width: 65%;
-    min-width: 20%;
+    min-width: 22%;
   }
 
   @include desktop {
-    font-size: 1rem;
+    font-size: 16px;
     max-width: 35%;
     min-width: 10%;
   }
