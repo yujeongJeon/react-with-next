@@ -13,11 +13,12 @@ export default {
 export const imgModal = () => {
   // knobs 만들기
   const isOpen = boolean("isOpen", true);
+  const botName = text("botName", "예시 봇")
   const url = text(
     "url",
     `${config.api_server.api_domain}/images/pexels-photo-617278.jpeg`
   );
-  return <ImageModal url={url} isOpen={isOpen} toggle={action("toggle")} />;
+  return <ImageModal url={url} isOpen={isOpen} toggle={action("toggle")} botName={botName} />;
 };
 
 imgModal.story = {

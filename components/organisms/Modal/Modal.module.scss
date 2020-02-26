@@ -30,7 +30,7 @@
 
     @include phone {
       max-width: 100%;
-
+      min-width: 100%;
       & .modal-header,
       .modal-footer {
         height: 55px;
@@ -39,7 +39,7 @@
 
     @include desktop {
       max-width: 100%;
-
+      min-width: 100%;
       & .modal-header,
       .modal-footer {
         height: 55px;

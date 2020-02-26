@@ -129,7 +129,7 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
           onClick={readyForRequest}
         />
       </div>
-      <ImageModal isOpen={modal} toggle={toggle} url={image} />
+      <ImageModal isOpen={modal} toggle={toggle} url={image} botName={botName} />
     </div>
   );
 };
