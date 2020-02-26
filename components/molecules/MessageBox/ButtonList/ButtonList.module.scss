@@ -6,12 +6,13 @@
   width: 100%;
   min-width: 185px;
   margin-bottom: 8px;
+  white-space: pre-wrap;
 
   @include phone {
-    height: 37.5px;
+    min-height: 37.5px;
   }
   @include desktop {
-    height: 45px;
+    min-height: 45px;
   }
 
   &:last-child {

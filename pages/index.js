@@ -37,9 +37,6 @@ const Index = ({
 
   const receiveIframeSign = e => {
     if ("leaflo-import" === e.data.event) {
-      if (!isUndefined(window.console)) {
-        log("receive from parent ", e.origin);
-      }
       messageApi.init(colorSet.talkPop, colorSet.talkPopText, colorSet.talkPopBorder, colorSet.talkPopBorderRadius, btnImageUrl);
     }
   }
@@ -93,11 +90,6 @@ const Index = ({
         "--inputBtnHover": colorSet["inputBtnHover"],
         "--inputBtnHoverText": colorSet["inputBtnHoverText"],
         "--inputBtnHoverBorder": colorSet["inputBtnHoverBorder"],
-        "--imageModal": colorSet["imageModal"],
-        "--imageModalText": colorSet["imageModalText"],
-        "--imageModalCover": colorSet["imageModalCover"],
-        "--imageModalBorder": colorSet["imageModalBorder"],
-        "--imageModalBorderRadius": colorSet["imageModalBorderRadius"],
         "--talkPop": colorSet["talkPop"],
         "--talkPopText": colorSet["talkPopText"],
         "--talkPopBorder": colorSet["talkPopBorder"],

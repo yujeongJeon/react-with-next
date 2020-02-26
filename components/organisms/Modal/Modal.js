@@ -7,20 +7,18 @@ import { ModalHeader, ModalContent, ModalFooter } from "../../molecules";
 
 const cx = classNames.bind(styles);
 
-const Modal = ({ header, content, footer, isOpen, top, toggle }) => {
+const Modal = ({ header, content, footer, isOpen, toggle }) => {
   const disableToggle = e => e.preventDefault();
 
   return (
     <div tabIndex="-1" style={{ position: "relative", display: "block" }}>
-      <div className={cx("cover", { show: isOpen })}></div>
       <div className={cx("modal", { show: isOpen })}>
         <div
           tabIndex="-1"
           className={cx("modal-dialog")}
-          style={{ top: top }}
           onClick={disableToggle}>
           <ModalHeader toggle={toggle}>{header}</ModalHeader>
-          <ModalContent endOfModal={isEmpty(footer)}>{content}</ModalContent>
+          <ModalContent endOfModal={isEmpty(footer)} toggle={toggle}>{content}</ModalContent>
           {isNotEmpty(footer) && <ModalFooter>{footer}</ModalFooter>}
         </div>
       </div>
@@ -29,7 +27,6 @@ const Modal = ({ header, content, footer, isOpen, top, toggle }) => {
 };
 
 Modal.defaultProps = {
-  top: "10%",
   isOpen: false,
   toggle: _ => {},
   header: void 0,
