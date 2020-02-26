@@ -6,9 +6,10 @@
   "scripts": {
     "dev:window": "set NEXT_ENV=development&& next -p 3001",
     "dev:linux": "export NEXT_ENV=development&& next -p 3001",
-    "build": "next build",
-    "start:window": "set NEXT_ENV=lcloud&& npm run build&& next start -p 4001",
-    "start:linux": "export NEXT_ENV=lcloud&& npm run build&& next start -p 4001",
+    "build": "export NEXT_ENV=production&& next build",
+    "start:window": "set NEXT_ENV=lcloud&& next build&& next start -p 4001",
+    "start:linux": "export NEXT_ENV=lcloud&& next build&& next start -p 4001",
+    "start:prod": "next start -p 4001",
     "storybook": "start-storybook -s ./public",
     "analyze": "set ANALYZE=true&& next build",
     "analyze:server": "set BUNDLE_ANALYZE=server&& next build",
