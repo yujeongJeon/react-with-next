@@ -134,12 +134,13 @@ const MessageProvider = ({ children }) => {
         setTimeout(reconnectSession, 1000);
         break;
       case "5000": // 세션 유지
-        setMessages(prevState => {
-          return {
-            ...prevState,
-            status: "DONE"
-          };
-        });
+        refreshSession();
+        // setMessages(prevState => {
+        //   return {
+        //     ...prevState,
+        //     status: "DONE"
+        //   };
+        // });
         break;
       case "9001": // apiKey 오류
         createMessage({

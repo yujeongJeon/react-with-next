@@ -37,7 +37,7 @@ const routes = async (req, res) => {
     const url = config.api_server.interface_url;
 
     const { data } = await sendMessage(
-      `${url}/test/${apiKey}/message`,
+      `${url}/api/${apiKey}/message`,
       options,
       headers
     );

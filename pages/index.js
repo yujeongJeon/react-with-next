@@ -133,9 +133,43 @@ const Index = ({
 };
 
 Index.getInitialProps = async ({ query }) => {
-  const defaultImage = "/assets/leaflo-chatbot.png";
   const { apiKey, userId, accessKey, accessSecret } = query;
 
+  const resendWelcome = async _ => {
+    const { data } = await axios.post(`${API_DOMAIN}/api/refresh`, {
+      apiKey: apiKey,
+      accessKey: accessKey,
+      accessSecret: accessSecret
+    });
+
+    return data;
+  };
+
+  const sendProps = (apiKey, {code, data}) => {
+    const defaultImage = "/assets/leaflo-chatbot.png";
+
+    switch (code) {
+      case "1000":
+        return {
+          name: data.botName,
+          imageUrl: data.botImageUrl || defaultImage,
+          apiKey: apiKey,
+          colorSet: data.webChatColorSet,
+          btnImageUrl: data.webChatBtnImage || null
+        };
+      case "9000":
+      case "9001":
+      default:
+        return {
+          name: "ERROR",
+          imageUrl: defaultImage,
+          apiKey: apiKey,
+          colorSet: {},
+          btnImageUrl: null
+        };
+    }
+  }
+  
   if (
     isEmpty(apiKey) ||
     isEmpty(accessKey) ||
@@ -144,32 +178,15 @@ Index.getInitialProps = async ({ query }) => {
   )
     return {};
 
-  const { data: botData } = await axios.post(`${API_DOMAIN}/api/init`, {
+  const { data } = await axios.post(`${API_DOMAIN}/api/init`, {
     apiKey: apiKey,
     accessKey: accessKey,
     accessSecret: accessSecret
   });
 
-  switch (botData.code) {
-    case "1000":
-      return {
-        name: botData.data.botName,
-        imageUrl: botData.data.botImageUrl || defaultImage,
-        apiKey: apiKey,
-        colorSet: botData.data.webChatColorSet,
-        btnImageUrl: botData.data.webChatBtnImage || null
-      };
-    case "9000":
-    case "9001":
-    default:
-      return {
-        name: "ERROR",
-        imageUrl: defaultImage,
-        apiKey: apiKey,
-        colorSet: {},
-        btnImageUrl: null
-      };
-  }
+  const props = sendProps(apiKey, data);
+
+  return props;
 };
 
 export default Index;
