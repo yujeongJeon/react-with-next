@@ -35,7 +35,7 @@ const routes = async (req, res) => {
     const url = config.api_server.interface_url;
     
     const { data } = await refreshSession(
-      `${url}/test/${apiKey}/refresh`,
+      `${url}/api/${apiKey}/refresh`,
       options,
       headers
     );
