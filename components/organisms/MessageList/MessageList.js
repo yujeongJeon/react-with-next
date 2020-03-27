@@ -14,14 +14,18 @@ const MessageList = ({ messages, status, btnOnClick, imgOnClick, innerRef }) => 
   useEffect(
     _ => {
       if (innerRef) {
-        innerRef.current.scrollIntoView({ block: 'end' });
+        //innerRef.current.scrollIntoView({ block: 'end' });
+        innerRef.current.scrollIntoView(false);
       }
     },
     [messages]
   );
 
   useEffect(_ => {
-    if (imgHeight > 0) innerRef.current.scrollIntoView({ block: 'end' });
+    if (imgHeight > 0) {
+      //innerRef.current.scrollIntoView({ block: 'end' });
+      innerRef.current.scrollIntoView(false);
+    }
     setImgHeight(0);
   }, [imgHeight]);
 

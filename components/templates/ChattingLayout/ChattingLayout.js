@@ -94,7 +94,8 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
   useLayoutEffect(_ => {
     const detectMobileKeyboard = _ => {
       if(document.activeElement.tagName=="INPUT"){
-        listRef.current.scrollIntoView({ block: 'end' });
+        //listRef.current.scrollIntoView({ block: 'end' });
+        listRef.current.scrollIntoView(false);
       }
     }
 
