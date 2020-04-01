@@ -12,7 +12,6 @@ const MessageInput = ({ message, onChange, onKeyPress, onClick, ...rest }) => (
     <div className={cx("input-wrapper")}>
       <Input
         type="text"
-        placeholder="입력하세요."
         value={message}
         onChange={onChange}
         onKeyPress={onKeyPress}

@@ -39,7 +39,7 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
   const onChange = ({ target: { value } }) => setInput(value);
 
   const readyForRequest = _ => {
-    if (isEmpty(input)) return null;
+    if (isEmpty(input.trim())) return null;
 
     const requestMessage = {
       contentType: ["textRandom"],
@@ -49,7 +49,11 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
     createMessage(requestMessage);
 
-    setInput("");
+    const { isSafari } = browserDetect();
+
+    if (isSafari) setInput(" ");
+    else setInput("");
+    
     sendMessage(first(requestMessage.responseText));
 
     inputRef.current.focus();
