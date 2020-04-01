@@ -36,7 +36,10 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
   const toggle = _ => setModal(!modal);
 
-  const onChange = ({ target: { value } }) => setInput(value);
+  const onChange = ({ target: { value } }) => {
+    log(value);
+    setInput(value);
+  }
 
   const readyForRequest = _ => {
     if (isEmpty(input)) return null;
@@ -50,8 +53,6 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
     setInput("");
     sendMessage(first(requestMessage.responseText));
     inputRef.current.focus();
-    inputRef.current.value = "";
-    log(inputRef.current.value);
   };
 
   const onKeyPress = e => {
