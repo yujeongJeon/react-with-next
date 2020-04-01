@@ -7,6 +7,7 @@ const cx = classNames.bind(styles);
 const Input = ({ type, name, value, onChange, className, ...rest }) =>
   type === "text" ? (
     <input
+      autoComplete="off"
       type="text"
       name={name}
       value={value}

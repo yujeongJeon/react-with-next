@@ -56,6 +56,8 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
     if (!isSafari) {
       inputRef.current.focus();
+    } else {
+      inputRef.current.blur();
     }
   };
 
