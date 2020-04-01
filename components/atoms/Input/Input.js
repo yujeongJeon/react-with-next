@@ -10,24 +10,24 @@ const Input = ({ type, name, value, onChange, className, innerref, ...rest }) =>
       autoComplete="off"
       type="text"
       name={name}
-      value={value}
-      onChange={onChange}
+      // value={value}
+      // onChange={onChange}
       className={cx("input", className)}
       ref={ innerref || null  }
       {...rest}
     />
   ) : (
     <textarea
-      value={value}
-      onChange={onChange}
+      // value={value}
+      // onChange={onChange}
       className={cx("input", "textarea", className)}
       {...rest}
     />
   );
 
 Input.defaultProps = {
-  value: "",
-  onChange: _ => {},
+  // value: "",
+  // onChange: _ => {},
   className: ""
 };
 

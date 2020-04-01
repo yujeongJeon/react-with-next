@@ -27,7 +27,7 @@ const DateDivider = _ => {
 
 const ChattingLayout = ({ botImageUrl, botName, messages }) => {
   const { createMessage, sendMessage, refreshSession, status } = useContext(MessageContext);
-  const [input, setInput] = useState("");
+  //const [input, setInput] = useState("");
   const [modal, setModal] = useState(false);
   const [image, setImage] = useState(void 0);
 
@@ -36,32 +36,31 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
   const toggle = _ => setModal(!modal);
 
-  const onChange = ({ target: { value } }) => setInput(value);
+  //const onChange = ({ target: { value } }) => setInput(value);
 
   const readyForRequest = _ => {
-    if (isEmpty(input.trim())) return null;
+    //if (isEmpty(input.trim())) return null;
+    if (isEmpty(inputRef.current.value.trim())) return null;
 
     const requestMessage = {
       contentType: ["textRandom"],
-      responseText: [input],
+      responseText: [inputRef.current.value],
       isMe: true
     };
 
     createMessage(requestMessage);
 
-    const { isSafari } = browserDetect();
-
-    if (isSafari) setInput(" ");
-    else setInput("");
-    
+    //setInput("");
+    inputRef.current.value = "";
     sendMessage(first(requestMessage.responseText));
-
     inputRef.current.focus();
   };
 
   const onKeyPress = e => {
     if (e.charCode === 13) {
       e.preventDefault();
+      inputRef.current.value += " ";
+      
       readyForRequest();
     }
   };
@@ -130,8 +129,8 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
       <div className={cx("input-section")}>
         <MessageInput
           innerref={inputRef}
-          message={input}
-          onChange={onChange}
+          //message={input}
+          //onChange={onChange}
           onKeyPress={onKeyPress}
           onClick={readyForRequest}
         />

@@ -44,6 +44,14 @@ body {
   --talkPopBorderRadius: 6px;
 }
 
+input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
 html, body, div#__next {
   background-color: $--bg;
   margin: 0 auto;

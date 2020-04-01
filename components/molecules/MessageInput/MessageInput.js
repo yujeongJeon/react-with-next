@@ -12,8 +12,8 @@ const MessageInput = ({ message, onChange, onKeyPress, onClick, ...rest }) => (
     <div className={cx("input-wrapper")}>
       <Input
         type="text"
-        value={message}
-        onChange={onChange}
+        //value={message}
+        //onChange={onChange}
         onKeyPress={onKeyPress}
         { ...rest }
       />
