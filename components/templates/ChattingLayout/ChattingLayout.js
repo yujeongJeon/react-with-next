@@ -50,16 +50,16 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
     inputRef.current.value = "";
     sendMessage(first(requestMessage.responseText));
 
-    isSafari && window.parent.document.body.clientWidth <= 768
+    isSafari
     ? inputRef.current.blur()
     : inputRef.current.focus()
   };
 
+  const { isSafari } = browserDetect();
+
   const onKeyPress = e => {
     if (e.charCode === 13) {
       e.preventDefault();
-      const { isSafari } = browserDetect();
-      log(window.parent.document.body.clientWidth);
       readyForRequest(isSafari);
     }
   };
