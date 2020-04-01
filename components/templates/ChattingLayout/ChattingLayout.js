@@ -53,8 +53,8 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
     inputRef.current.focus();
   };
 
-  const touchEnd = e => {
-    log(e.charCode);
+  const touchStart = e => {
+    log(e.target);
   }
 
   const onKeyPress = e => {
@@ -131,7 +131,7 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
         <MessageInput
           innerref={inputRef}
           onKeyPress={onKeyPress}
-          ontouchend={touchEnd}
+          onTouchStart={touchStart}
           onClick={readyForRequest}
         />
       </div>
