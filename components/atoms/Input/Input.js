@@ -4,7 +4,7 @@ import styles from "./style.scss";
 
 const cx = classNames.bind(styles);
 
-const Input = ({ type, name, value, onChange, className, ...rest }) =>
+const Input = ({ type, name, value, onChange, className, innerref, ...rest }) =>
   type === "text" ? (
     <input
       autoComplete="off"
@@ -13,7 +13,7 @@ const Input = ({ type, name, value, onChange, className, ...rest }) =>
       value={value}
       onChange={onChange}
       className={cx("input", className)}
-      ref={ rest.innerref || null  }
+      ref={ innerref || null  }
       {...rest}
     />
   ) : (

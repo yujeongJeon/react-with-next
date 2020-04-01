@@ -38,7 +38,7 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
   const onChange = ({ target: { value } }) => setInput(value);
 
-  const readyForRequest = input => {
+  const readyForRequest = _ => {
     if (isEmpty(input)) return null;
 
     const requestMessage = {
@@ -51,19 +51,14 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
     setInput("");
     sendMessage(first(requestMessage.responseText));
-    inputRef.current.value="";
+
     inputRef.current.focus();
   };
 
   const onKeyPress = e => {
     if (e.charCode === 13) {
       e.preventDefault();
-      const { isSafari } = browserDetect();
-      if (isSafari) {
-        inputRef.current.value = `${input} `;
-      }
-      
-      readyForRequest(inputRef.current.value);
+      readyForRequest();
     }
   };
 
