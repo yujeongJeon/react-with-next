@@ -38,6 +38,15 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
   const onChange = ({ target: { value } }) => setInput(value);
 
+  const onFocus = e => {
+    const { isSafari } = browserDetect();
+    
+    if (isSafari && isEmpty(e.target.value)) {
+      e.preventDefault();
+      setInput("");
+    }
+  }
+
   const readyForRequest = _ => {
     if (isEmpty(input)) return null;
     const requestMessage = {
@@ -94,7 +103,6 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
   useLayoutEffect(_ => {
     const detectMobileKeyboard = _ => {
       if(document.activeElement.tagName=="INPUT"){
-        //listRef.current.scrollIntoView({ block: 'end' });
         listRef.current.scrollIntoView(false);
       }
     }
@@ -128,6 +136,7 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
           onChange={onChange}
           onKeyPress={onKeyPress}
           onClick={readyForRequest}
+          onFocus={onFocus}
         />
       </div>
       <ImageModal isOpen={modal} toggle={toggle} url={image} botName={botName} />
