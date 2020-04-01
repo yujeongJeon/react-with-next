@@ -49,9 +49,7 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
     inputRef.current.value = "";
     sendMessage(first(requestMessage.responseText));
-    
-    log(window.parent.document.body.clientWidth);
-    
+
     isSafari && window.parent.document.body.clientWidth <= 768
     ? inputRef.current.blur()
     : inputRef.current.focus()
@@ -61,7 +59,7 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
     if (e.charCode === 13) {
       e.preventDefault();
       const { isSafari } = browserDetect();
-
+      log(window.parent.document.body.clientWidth);
       readyForRequest(isSafari);
     }
   };
