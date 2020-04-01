@@ -21,7 +21,7 @@
     color: rgba(0,0,0,0.375);
   }
 
-  &[autocomplete="off"]::-webkit-credentials-auto-fill-button {
-      visibility: hidden;
+  &::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
   }
 }
