@@ -54,11 +54,7 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
     setInput("");
     sendMessage(first(requestMessage.responseText));
 
-    if (!isSafari) {
-      inputRef.current.focus();
-    } else {
-      inputRef.current.blur();
-    }
+    inputRef.current.focus();
   };
 
   const onKeyPress = e => {
