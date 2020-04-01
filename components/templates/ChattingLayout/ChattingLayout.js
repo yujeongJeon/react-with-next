@@ -49,31 +49,14 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
     const { isSafari } = browserDetect();
 
-    if (isSafari) {
-      // async 의심
-      const createMsg = new Promise(function (resolve, reject) {
-        createMessage(requestMessage);
-        resolve(1);
-      });
-
-      createMsg.then(_ => {
-        setInput("");
-        return;
-      }).then(_ => {
-        sendMessage(first(requestMessage.responseText));
-        return;
-      }).then(_ => {
-        inputRef.current.focus();
-      });
-
-      return;
-    }
-
     createMessage(requestMessage);
 
     setInput("");
     sendMessage(first(requestMessage.responseText));
-    inputRef.current.focus();
+
+    if (!isSafari) {
+      inputRef.current.focus();
+    }
   };
 
   const onKeyPress = e => {
