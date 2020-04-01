@@ -35,7 +35,7 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
   const toggle = _ => setModal(!modal);
 
-  const readyForRequest = _ => {
+  const readyForRequest = isSafari => {
     const input = inputRef.current.value.trim();
     if (isEmpty(input)) return null;
 
@@ -50,19 +50,17 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
     inputRef.current.value = "";
     sendMessage(first(requestMessage.responseText));
 
-    inputRef.current.focus();
+    isSafari
+    ? inputRef.current.blur()
+    : inputRef.current.focus()
   };
 
-  const touchEnd = e => {
-    log(e.charCode);
-  }
+  const { isSafari } = browserDetect();
 
   const onKeyPress = e => {
     if (e.charCode === 13) {
       e.preventDefault();
-      const { isSafari } = browserDetect();
-
-      !isSafari && readyForRequest();
+      readyForRequest(isSafari);
     }
   };
 
@@ -131,7 +129,6 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
         <MessageInput
           innerref={inputRef}
           onKeyPress={onKeyPress}
-          ontouchend={touchEnd}
           onClick={readyForRequest}
         />
       </div>
