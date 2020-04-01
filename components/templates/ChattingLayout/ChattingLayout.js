@@ -38,16 +38,6 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
   const onChange = ({ target: { value } }) => setInput(value);
 
-  const onFocus = e => {
-    const { isSafari } = browserDetect();
-
-    if (isSafari && isEmpty(input)) {
-      console.log(e.target.value, input);
-      e.preventDefault();
-      setInput("");
-    }
-  }
-
   const readyForRequest = _ => {
     if (isEmpty(input)) return null;
     const requestMessage = {
@@ -60,6 +50,8 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
     setInput("");
     sendMessage(first(requestMessage.responseText));
     inputRef.current.focus();
+    inputRef.current.value = "";
+    log(inputRef.current.value);
   };
 
   const onKeyPress = e => {
@@ -137,7 +129,6 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
           onChange={onChange}
           onKeyPress={onKeyPress}
           onClick={readyForRequest}
-          onFocus={onFocus}
         />
       </div>
       <ImageModal isOpen={modal} toggle={toggle} url={image} botName={botName} />
