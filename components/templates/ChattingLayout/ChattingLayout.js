@@ -41,7 +41,8 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
   const onFocus = e => {
     const { isSafari } = browserDetect();
     
-    if (isSafari && isEmpty(e.target.value)) {
+    if (isSafari && isEmpty(input)) {
+      log(e.target.value, input);
       e.preventDefault();
       setInput("");
     }
