@@ -36,18 +36,39 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
   const toggle = _ => setModal(!modal);
 
-  const onChange = ({ target: { value } }) => {
-    log(value);
-    setInput(value);
-  }
+  const onChange = ({ target: { value } }) => setInput(value);
 
   const readyForRequest = _ => {
     if (isEmpty(input)) return null;
+
     const requestMessage = {
       contentType: ["textRandom"],
       responseText: [input],
       isMe: true
     };
+
+    const { isSafari } = browserDetect();
+
+    if (isSafari) {
+      // async 의심
+      const createMsg = new Promise(function (resolve, reject) {
+        createMessage(requestMessage);
+        resolve(1);
+      });
+
+      createMsg.then(_ => {
+        setInput("");
+        return;
+      }).then(_ => {
+        sendMessage(first(requestMessage.responseText));
+        return;
+      }).then(_ => {
+        inputRef.current.focus();
+      });
+
+      return;
+    }
+
     createMessage(requestMessage);
 
     setInput("");
