@@ -20,6 +20,11 @@ const Index = ({
   btnImageUrl }) => {
   const { messages, sendMessage } = useContext(MessageContext);
   const [loading, setLoading] = useState(true);
+  const [parentWidth, setParentWidth] = useState(0);
+
+  useEffect(_ => {
+    setParentWidth(window.innerWidth);
+  }, []);
 
   if (!apiKey)
     return (
@@ -37,6 +42,7 @@ const Index = ({
 
   const receiveIframeSign = e => {
     if ("leaflo-import" === e.data.event) {
+      setParentWidth(e.data.data);
       messageApi.init(colorSet.talkPop, colorSet.talkPopText, colorSet.talkPopBorder, colorSet.talkPopBorderRadius, btnImageUrl);
     }
   }
@@ -128,7 +134,7 @@ const Index = ({
     )
 
   return (
-    <ChattingLayout botImageUrl={imageUrl} botName={name} messages={messages} />
+    <ChattingLayout parentWidth={parentWidth} botImageUrl={imageUrl} botName={name} messages={messages} />
   );
 };
 

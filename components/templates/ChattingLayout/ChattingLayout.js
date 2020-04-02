@@ -1,5 +1,7 @@
 import styles from "./ChattingLayout.module.scss";
 
+import screen from '../../../constants/screen';
+
 import classNames from "classnames/bind";
 import React, { useState, useContext, useRef, useLayoutEffect } from "react";
 import { ChattingHeader, MessageList } from "../../organisms";
@@ -25,7 +27,7 @@ const DateDivider = _ => {
   return <DynamicDivier date={currentDate} />;
 };
 
-const ChattingLayout = ({ botImageUrl, botName, messages }) => {
+const ChattingLayout = ({ parentWidth, botImageUrl, botName, messages }) => {
   const { createMessage, sendMessage, refreshSession, status } = useContext(MessageContext);
   const [modal, setModal] = useState(false);
   const [image, setImage] = useState(void 0);
@@ -49,8 +51,8 @@ const ChattingLayout = ({ botImageUrl, botName, messages }) => {
 
     inputRef.current.value = "";
     sendMessage(first(requestMessage.responseText));
-
-    isSafari
+    log(parentWidth, screen.PHONE)
+    isSafari && parentWidth <= screen.PHONE
     ? inputRef.current.blur()
     : inputRef.current.focus()
   };
