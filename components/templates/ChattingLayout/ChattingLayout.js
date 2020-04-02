@@ -57,7 +57,7 @@ const ChattingLayout = ({ parentWidth, botImageUrl, botName, messages }) => {
     : inputRef.current.focus()
   };
 
-  const { isSafari } = browserDetect();
+  const { isSafari, isIE } = browserDetect();
 
   const onKeyPress = e => {
     if (e.charCode === 13) {
@@ -98,9 +98,16 @@ const ChattingLayout = ({ parentWidth, botImageUrl, botName, messages }) => {
 
   const onClose = _ => messageApi.close();
 
+  const prevHeight = useRef();
+
   useLayoutEffect(_ => {
     const detectMobileKeyboard = _ => {
-      if(document.activeElement.tagName=="INPUT"){
+      if (!prevHeight) {
+        prevHeight = window.innerHeight;
+        return;
+      }
+
+      if (prevHeight !== window.innerHeight) {
         listRef.current.scrollIntoView(false);
       }
     }
@@ -117,7 +124,7 @@ const ChattingLayout = ({ parentWidth, botImageUrl, botName, messages }) => {
       name={botName} 
       onRefresh={ onRefresh }
       onClose={ onClose } />
-      <div className={cx("messages-section")}>
+      <div className={cx("messages-section")} id="leaflo-message-list">
         <DateDivider />
         <MessageList
           innerRef={listRef}
