@@ -102,6 +102,10 @@ const ChattingLayout = ({ parentWidth, botImageUrl, botName, messages }) => {
 
   useLayoutEffect(_ => {
     const detectMobileKeyboard = _ => {
+      if(document.activeElement.tagName==="BUTTON"){
+        return;
+      }
+
       if (!prevHeight) {
         prevHeight = window.innerHeight;
         return;
