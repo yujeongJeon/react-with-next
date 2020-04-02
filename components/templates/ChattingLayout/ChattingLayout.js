@@ -51,7 +51,7 @@ const ChattingLayout = ({ parentWidth, botImageUrl, botName, messages }) => {
 
     inputRef.current.value = "";
     sendMessage(first(requestMessage.responseText));
-    log(parentWidth, screen.PHONE)
+    
     isSafari && parentWidth <= screen.PHONE
     ? inputRef.current.blur()
     : inputRef.current.focus()
