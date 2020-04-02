@@ -57,7 +57,7 @@ const ChattingLayout = ({ parentWidth, botImageUrl, botName, messages }) => {
     : inputRef.current.focus()
   };
 
-  const { isSafari, isIE } = browserDetect();
+  const { isSafari } = browserDetect();
 
   const onKeyPress = e => {
     if (e.charCode === 13) {
@@ -102,10 +102,6 @@ const ChattingLayout = ({ parentWidth, botImageUrl, botName, messages }) => {
 
   useLayoutEffect(_ => {
     const detectMobileKeyboard = _ => {
-      if(document.activeElement.tagName==="BUTTON"){
-        return;
-      }
-
       if (!prevHeight) {
         prevHeight = window.innerHeight;
         return;
@@ -120,6 +116,11 @@ const ChattingLayout = ({ parentWidth, botImageUrl, botName, messages }) => {
 
     return _ => window.removeEventListener("resize", detectMobileKeyboard);
   }, []);
+
+  const onClick = e => {
+    e.preventDefault();
+    readyForRequest();
+  }
 
   return (
     <div className={cx("wrapper")}>
@@ -142,7 +143,7 @@ const ChattingLayout = ({ parentWidth, botImageUrl, botName, messages }) => {
         <MessageInput
           innerref={inputRef}
           onKeyPress={onKeyPress}
-          onClick={readyForRequest}
+          onClick={onClick}
         />
       </div>
       <ImageModal isOpen={modal} toggle={toggle} url={image} botName={botName} />
