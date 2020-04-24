@@ -12,7 +12,7 @@ const CardMessage = ({ url, title, text, onClick, onLoad }) => {
     <div className={cx("card")}>
       <Image src={url} className={cx("image")} onClick={onClick} onLoad={ onLoad } />
       <div className={cx("title")}>{title}</div>
-      <div className={cx("text")} style={{}}>{text}</div>
+      <div className={cx("text")}>{text}</div>
     </div>
   );
 };

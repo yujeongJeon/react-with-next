@@ -4,6 +4,8 @@
 .card {
   .title {
     padding: 8px 0;
+    overflow: hidden;
+    word-wrap: break-word;
     @include phone {
       font-size: 16px;
     }

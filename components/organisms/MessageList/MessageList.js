@@ -14,7 +14,6 @@ const MessageList = ({ messages, status, btnOnClick, imgOnClick, innerRef }) => 
   useEffect(
     _ => {
       if (innerRef) {
-        //innerRef.current.scrollIntoView({ block: 'end' });
         innerRef.current.scrollIntoView(false);
       }
     },
@@ -23,7 +22,6 @@ const MessageList = ({ messages, status, btnOnClick, imgOnClick, innerRef }) => 
 
   useEffect(_ => {
     if (imgHeight > 0) {
-      //innerRef.current.scrollIntoView({ block: 'end' });
       innerRef.current.scrollIntoView(false);
     }
     setImgHeight(0);
